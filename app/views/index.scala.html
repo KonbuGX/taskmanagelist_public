@@ -1,0 +1,14 @@
+@(message:String,data:List[TaskListViewModel])
+@main() {
+  <h1>タスク管理</h1>
+  <div class="title_item">
+  <p>@Html(message)</p>
+      <table border="1">
+        <tr><th>タスクNo</th><th>タスク名</th><th>タスク内容</th><th>期日</th><th>ステータス</th><th>更新</th><th>削除</th></tr>
+        @for(item<-data){
+        <tr><td>@item.taskNo</td><td>@item.taskName</td><td>@item.taskContents</td><td>@item.deadLine</td><td>@item.status</td><td><a href="/edit/@item.taskNo" class="delete regi" value="update:@item.taskNo">更新</a></td><td><a href="/delete/@item.taskNo" class="delete regi">削除</a></td></tr>
+        }
+      </table>
+  </div>
+  <a href="/add" class="add regi">登録</a>
+}

@@ -1,0 +1,64 @@
+*{margin:0;padding:0;}
+body{background-color:rgb(153,255,153);}
+h1{text-align:center;margin:40px 20px 10px}
+table{margin:20px 5% 10px;border-color: #000000;}
+th{background-color:green;text-align: center;}
+td{background-color: white;text-align: center;}
+p{text-align:left;margin:20px 0px 10px 10%}
+.regi {
+    width:200px;
+    font-size:24px;
+    font-weight:bold;
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    padding:8px 0 10px;
+    color:#000000;
+    background-color:white;
+    border-radius:5px;
+    margin:40px auto 60px;
+}
+
+.cont_title {
+    width:60%;
+    font-size:24px;
+    font-weight:bold;
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    padding:8px 0px 10px;
+    margin:40px 10% 4px;
+}
+
+.cont {
+    width:70%;
+    font-size:24px;
+    font-weight:bold;
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    padding:8px 0px 10px;
+    margin:40px auto 4px;
+}
+
+.title_item {
+    width:100%;
+    font-size:16px;
+    font-weight:bold;
+    display:block;
+    text-decoration:none;
+    text-align:left;
+    padding:8px 0 10px;
+    margin:5px 10% 30px;
+}
+
+.other_item {
+    width:200%;
+    font-size:24px;
+    font-weight:bold;
+    display:block;
+    text-decoration:none;
+    text-align:left;
+    padding:8px 0 10px;
+    margin:4px 0px 60px 30%;
+}

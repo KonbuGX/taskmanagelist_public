@@ -1,0 +1,13 @@
+@(message:String,form:Form[AccountViewModel])
+@main() {
+  <h1>タスク管理</h1>
+  <p>@Html(message)</p>
+  	@helper.form(action=routes.HomeController.create()){
+  	@helper.CSRF.formField
+  	<div class="other_item">
+		@helper.inputText(form("name"),'_label -> "アカウント名")
+  	    @helper.inputText(form("name"),'_label -> "パスワード")
+  	</div>
+  	<button class="regi">ログイン</button>
+  	}
+}

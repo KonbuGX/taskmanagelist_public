@@ -1,0 +1,17 @@
+@(message:String,form:Form[TaskListViewModel],taskNo:Int)
+@main() {
+  <h1>タスク管理</h1>
+  <p>@Html(message)</p>
+  <div class="other_item">
+  	@helper.form(action=routes.HomeController.remove(taskNo)){
+  	@helper.CSRF.formField
+  	@helper.inputText(form("taskNo"),'_label -> "タスクNo",'disabled -> "disabled")
+  	@helper.inputText(form("taskName"),'_label -> "タスク名",'disabled -> "disabled")
+  	@helper.inputDate(form("deadLine"),'_label -> "期日",'disabled -> "disabled")
+	@helper.inputText(form("status"),'_label -> "ステータス",'disabled -> "disabled")
+  	@helper.textarea(form("taskContents"),'_label -> "タスク内容",'cols ->40,'rows ->10,'disabled -> "disabled")
+  </div>	
+  	<button class="regi">削除</button>
+  	}
+  	  <a href="/" class="delete regi">戻る</a>
+}
