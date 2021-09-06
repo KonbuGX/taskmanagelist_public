@@ -1,5 +1,5 @@
 name := """taskmanagelist"""
-organization := "TaskManageList"
+organization := "taskmanagelist"
 
 version := "1.0-SNAPSHOT"
 
