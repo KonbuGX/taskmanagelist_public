@@ -1,0 +1,3 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/bunsawatsubasa1/taskmanagelist/app/controllers/HomeController.java:71:1:  エラー: ';'がありません[0m
+[0m[[0m[31merror[0m] [0m[0m		String errorMsg = taskListService.InsertTask(conn,form)[0m
+[0m[[0m[31merror[0m] [0m[0m		                                                       ^エラー1個[0m
