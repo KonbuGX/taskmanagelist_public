@@ -5,4 +5,5 @@ logs
 /.classpath
 /.project
 /.settings
+sample.sqlite
 /RUNNING_PID
