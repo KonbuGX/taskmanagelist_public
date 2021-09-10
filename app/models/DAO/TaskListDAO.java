@@ -18,6 +18,6 @@ public interface TaskListDAO {
 	public List<TaskListViewModel> selectAll(Connection conn);
 	public List<TaskListViewModel> select(Connection conn,int accountNo,int taskNo);
 	public String insertTask(Connection conn,TaskListViewModel task);
-	public Boolean updateTask(Connection conn,TaskListViewModel task);
-	public Boolean deleteTask(Connection conn,int accountNo,int taskNo);
+	public String updateTask(Connection conn,TaskListViewModel task);
+	public String deleteTask(Connection conn,int accountNo,int taskNo);
 }

@@ -40,11 +40,11 @@ public String InsertTask(Connection conn,TaskListViewModel task){
     return taskListDAO.insertTask(conn,task);
 }
 
-public Boolean UpdateTask(Connection conn,TaskListViewModel task){
+public String UpdateTask(Connection conn,TaskListViewModel task){
     return taskListDAO.updateTask(conn,task);
 }
 
-public Boolean DeleteTask(Connection conn,int accountNo,int taskNo){
+public String DeleteTask(Connection conn,int accountNo,int taskNo){
     return taskListDAO.deleteTask(conn,accountNo,taskNo);
 }
 

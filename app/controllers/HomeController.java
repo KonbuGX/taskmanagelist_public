@@ -107,9 +107,11 @@ public class HomeController extends Controller {
 		form.setAccountNo(accountNo);
 		form.settaskNo(taskNo);
 		form.setLastupdate(nowDateTime);
+
 		Connection conn = db.getConnection();
-		if(taskListService.UpdateTask(conn,form) != true){
-			String msg = "<div class="+"cont"+">エラーが発生しました</div><br>";
+		String errorMsg = taskListService.UpdateTask(conn,form);
+		if(errorMsg != null){
+			String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
 			return ok(views.html.edit.render(msg,formdata,taskNo));
 		}
 		return redirect(routes.HomeController.index());
@@ -142,8 +144,10 @@ public class HomeController extends Controller {
 		Form<TaskListViewModel> formdata = formFactory.form(TaskListViewModel.class).bindFromRequest();
 		TaskListViewModel form = formdata.get();
 		Connection conn = db.getConnection();
-		if(taskListService.DeleteTask(conn,accountNo,taskNo) != true){
-			String msg = "<div class="+"cont"+">エラーが発生しました</div><br>";
+
+		String errorMsg = taskListService.DeleteTask(conn,accountNo,taskNo);
+		if(errorMsg != null){
+			String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
 			return ok(views.html.delete.render(msg,formdata,taskNo));
 		}
 		return redirect(routes.HomeController.index());

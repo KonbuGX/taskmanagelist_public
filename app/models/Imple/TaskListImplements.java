@@ -25,9 +25,10 @@ public class TaskListImplements implements TaskListDAO {
     		Statement stmt = conn.createStatement();
     		ResultSet rs = stmt.executeQuery("SELECT * from TaskList");
     		while(rs.next()){
-		        Date nowDateTime = new java.sql.Date(Long.valueOf(rs.getString("deadLine")));
-				Date nowDateTime2 = new java.sql.Date(Long.valueOf(rs.getString("lastUpdate")));
-                list.add(new TaskListViewModel(rs.getInt("accountNo"),rs.getInt("taskNo"),rs.getString("taskName"),rs.getString("taskContents"),nowDateTime,rs.getString("status"),nowDateTime2));
+				//ローカルではSQLiteのためコメントアウト。近々postgresqlに変更予定。
+		        //Date nowDateTime = new java.sql.Date(Long.valueOf(rs.getString("deadLine")));
+				//Date nowDateTime2 = new java.sql.Date(Long.valueOf(rs.getString("lastUpdate")));
+                list.add(new TaskListViewModel(rs.getInt("accountNo"),rs.getInt("taskNo"),rs.getString("taskName"),rs.getString("taskContents"),rs.getDate("deadLine"),rs.getString("status"),rs.getDate("lastUpdate")));
     		}
     		rs.close();
     		stmt.close();
@@ -50,9 +51,10 @@ public class TaskListImplements implements TaskListDAO {
     		Statement stmt = conn.createStatement();
     		ResultSet rs = stmt.executeQuery("SELECT * from TaskList where accountNo="+accountNo+" and taskNo="+taskNo);
     		while(rs.next()){
-		        Date nowDateTime = new java.sql.Date(Long.valueOf(rs.getString("deadLine")));
-				Date nowDateTime2 = new java.sql.Date(Long.valueOf(rs.getString("lastUpdate")));
-                list.add(new TaskListViewModel(rs.getInt("accountNo"),rs.getInt("taskNo"),rs.getString("taskName"),rs.getString("taskContents"),nowDateTime,rs.getString("status"),nowDateTime2));
+		        //ローカルではSQLiteのためコメントアウト。近々postgresqlに変更予定。
+		        //Date nowDateTime = new java.sql.Date(Long.valueOf(rs.getString("deadLine")));
+				//Date nowDateTime2 = new java.sql.Date(Long.valueOf(rs.getString("lastUpdate")));
+                list.add(new TaskListViewModel(rs.getInt("accountNo"),rs.getInt("taskNo"),rs.getString("taskName"),rs.getString("taskContents"),rs.getDate("deadLine"),rs.getString("status"),rs.getDate("lastUpdate")));
     		}
     		rs.close();
     		stmt.close();
@@ -105,7 +107,7 @@ public class TaskListImplements implements TaskListDAO {
         return null;
     }
 
-    public Boolean updateTask(Connection conn,TaskListViewModel task){
+    public String updateTask(Connection conn,TaskListViewModel task){
          int accountNo = task.getAccountNo();
          int taskNo= task.getTaskNo();
          String taskName= task.getTaskName();
@@ -131,12 +133,12 @@ public class TaskListImplements implements TaskListDAO {
             ps.close();
             conn.close();
 		}catch (SQLException e){
-		    return false;
+		    return e.toString();
 		}
-        return true;
+        return null;
     }
 
-	public Boolean deleteTask(Connection conn,int accountNo,int taskNo){
+	public String deleteTask(Connection conn,int accountNo,int taskNo){
 		try{
 			//Connection conn = db.getConnection();
 			PreparedStatement ps = conn.prepareStatement(
@@ -148,8 +150,8 @@ public class TaskListImplements implements TaskListDAO {
             ps.close();
             conn.close();
 		}catch (SQLException e){
-		    return false;
+		    return e.toString();
 		}
-        return true;
+        return null;
     }
 }
