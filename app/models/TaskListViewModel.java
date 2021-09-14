@@ -23,8 +23,12 @@ public class TaskListViewModel extends Model{
 	public Date deadLine;
 	public String status;
     public Date lastUpdate;
-public TaskListViewModel(){
+	public List<TaskListDTO> taskList;
+
+
+   public TaskListViewModel(){
         super();
+		this.taskList = new ArrayList<TaskListDTO>();
     }
 	public TaskListViewModel(int accountNo,int taskNo,String taskName,String taskContents,Date deadLine,String status,Date lastUpdate) {
 		super();
@@ -86,7 +90,6 @@ public TaskListViewModel(){
 	
 	public Date getLastupdate() {return lastUpdate;}
 
- public List<TaskListDTO> TaskList;
 
 	@Override
 	public String toString(){

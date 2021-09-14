@@ -18,54 +18,91 @@ import java.text.SimpleDateFormat;
 
 public class TaskListImplements implements TaskListDAO {
     @Inject Database db;
-    public List<TaskListViewModel> selectAll(Connection conn){
-		List<TaskListViewModel> list = new ArrayList<TaskListViewModel>();
+
+    public List<TaskListDTO> selectAll(Connection conn){
+		List<TaskListDTO> list = new ArrayList<TaskListDTO>();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try{
     		Statement stmt = conn.createStatement();
     		ResultSet rs = stmt.executeQuery("SELECT * from TaskList");
+			
     		while(rs.next()){
+				TaskListDTO temp = new TaskListDTO();
 				//ローカルではSQLiteのためコメントアウト。近々postgresqlに変更予定。
 		        //Date nowDateTime = new java.sql.Date(Long.valueOf(rs.getString("deadLine")));
 				//Date nowDateTime2 = new java.sql.Date(Long.valueOf(rs.getString("lastUpdate")));
-                list.add(new TaskListViewModel(rs.getInt("accountNo"),rs.getInt("taskNo"),rs.getString("taskName"),rs.getString("taskContents"),rs.getDate("deadLine"),rs.getString("status"),rs.getDate("lastUpdate")));
+				temp.accountNo = rs.getInt("accountNo");
+				temp.taskNo = rs.getInt("taskNo");
+				temp.taskName = rs.getString("taskName");
+				temp.taskContents = rs.getString("taskContents");
+				temp.deadLine = rs.getDate("deadLine");
+				temp.status = rs.getString("status");
+				temp.lastUpdate = rs.getDate("lastUpdate");
+				list.add(temp);
     		}
     		rs.close();
     		stmt.close();
             conn.close();
     	}catch (Exception e){ 
-            List<TaskListViewModel> temp = new ArrayList<TaskListViewModel>();
+            List<TaskListDTO> tempList = new ArrayList<TaskListDTO>();
+			TaskListDTO temp = new TaskListDTO();
 			long miliseconds = System.currentTimeMillis();
 			Date nowDateTime = new Date(miliseconds);
 			String msg = e.toString();
-			temp.add(new TaskListViewModel(9999,9999,"",msg,nowDateTime,"",nowDateTime));
-            return temp;
+
+			temp.accountNo = 9999;
+			temp.taskNo = 9999;
+			temp.taskName = "";
+			temp.taskContents = msg;
+			temp.deadLine = nowDateTime;
+			temp.status = "";
+			temp.lastUpdate = nowDateTime;
+			tempList.add(temp);
+            return tempList;
         }
     	return list;
     }
 
-	public List<TaskListViewModel> select(Connection conn,int accountNo,int taskNo){
-		List<TaskListViewModel> list = new ArrayList<TaskListViewModel>();
+	public List<TaskListDTO> select(Connection conn,int accountNo,int taskNo){
+		List<TaskListDTO> list = new ArrayList<TaskListDTO>();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try{
     		Statement stmt = conn.createStatement();
     		ResultSet rs = stmt.executeQuery("SELECT * from TaskList where accountNo="+accountNo+" and taskNo="+taskNo);
+    		
     		while(rs.next()){
-		        //ローカルではSQLiteのためコメントアウト。近々postgresqlに変更予定。
+				TaskListDTO temp = new TaskListDTO();
+				//ローカルではSQLiteのためコメントアウト。近々postgresqlに変更予定。
 		        //Date nowDateTime = new java.sql.Date(Long.valueOf(rs.getString("deadLine")));
 				//Date nowDateTime2 = new java.sql.Date(Long.valueOf(rs.getString("lastUpdate")));
-                list.add(new TaskListViewModel(rs.getInt("accountNo"),rs.getInt("taskNo"),rs.getString("taskName"),rs.getString("taskContents"),rs.getDate("deadLine"),rs.getString("status"),rs.getDate("lastUpdate")));
+				temp.accountNo = rs.getInt("accountNo");
+				temp.taskNo = rs.getInt("taskNo");
+				temp.taskName = rs.getString("taskName");
+				temp.taskContents = rs.getString("taskContents");
+				temp.deadLine = rs.getDate("deadLine");
+				temp.status = rs.getString("status");
+				temp.lastUpdate = rs.getDate("lastUpdate");
+				list.add(temp);
     		}
     		rs.close();
     		stmt.close();
             conn.close();
     	}catch (Exception e){ 
-            List<TaskListViewModel> temp = new ArrayList<TaskListViewModel>();
+            List<TaskListDTO> tempList = new ArrayList<TaskListDTO>();
+			TaskListDTO temp = new TaskListDTO();
 			long miliseconds = System.currentTimeMillis();
 			Date nowDateTime = new Date(miliseconds);
 			String msg = e.toString();
-			temp.add(new TaskListViewModel(9999,9999,"",msg,nowDateTime,"",nowDateTime));
-            return temp;
+
+			temp.accountNo = 9999;
+			temp.taskNo = 9999;
+			temp.taskName = "";
+			temp.taskContents = msg;
+			temp.deadLine = nowDateTime;
+			temp.status = "";
+			temp.lastUpdate = nowDateTime;
+			tempList.add(temp);
+            return tempList;
         }
     	return list;
     }

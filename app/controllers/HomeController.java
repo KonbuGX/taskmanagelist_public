@@ -1,5 +1,6 @@
 package controllers;
 
+import app.*;
 import play.mvc.*;
 import java.util.*;
 import javax.inject.*;
@@ -23,6 +24,7 @@ public class HomeController extends Controller {
 	private final TaskListRepository taskListRepository;
 	public TaskListViewModel taskListViewModel = new TaskListViewModel();
 	private TaskListService taskListService = new TaskListService();
+	
 	@Inject Database db;
     /**
      * An action that renders an HTML page with a welcome message.
@@ -41,13 +43,14 @@ public class HomeController extends Controller {
     	String msg = "<div class="+"cont_title"+">タスク</div><br>";
     	Form<TaskListViewModel> formdata = personform.bindFromRequest();
 		TaskListViewModel form = formdata.get();
-		List<List<TaskListDTO>> taskList = new ArrayList<List<TaskListDTO>>();
-		
-		String password = "args[0]";
-        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(8));
-    	
 		Connection conn = db.getConnection();
-        return ok(views.html.index.render(msg,taskListService.selectAll(conn)));
+		for(TaskListDTO tempList : taskListService.selectAll(conn)){
+			form.taskList.add(tempList);
+		}
+		//String password = "args[0]";
+        //String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(8));
+    	
+        return ok(views.html.index.render(msg,form.taskList));
     }
     public Result regi() {
 		//return redirect(routes.HomeController.index());
@@ -63,12 +66,23 @@ public class HomeController extends Controller {
 		int accountNo = 999;
 		long miliseconds = System.currentTimeMillis();
 		Date nowDateTime = new java.sql.Date(miliseconds);
-		Form<TaskListViewModel> formdata = formFactory.form(TaskListViewModel.class).bindFromRequest();
+		Form<TaskListViewModel> formdata = personform.bindFromRequest();
 		TaskListViewModel form = formdata.get();
 		form.setAccountNo(accountNo);
 		form.setLastupdate(nowDateTime);
+		//エラーチェック
 		Connection conn = db.getConnection();
-		String errorMsg = taskListService.InsertTask(conn,form);
+		List<String> errorMsgList = taskListService.Validation(conn,form,app.Enum.screenStatus.CREATE.toString());
+		if(errorMsgList.size() > 0){
+			String msg = "<div class="+"cont"+">エラーが発生しました</div><br>";
+			for(String tempMsg : errorMsgList){
+				msg += "<div class="+"cont"+">"+tempMsg+"</div><br>";
+			}
+			return ok(views.html.add.render(msg,formdata));
+		}
+
+		Connection conn2 = db.getConnection();
+		String errorMsg = taskListService.InsertTask(conn2,form);
 		if(errorMsg != null){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
 			return ok(views.html.add.render(msg,formdata));
@@ -80,12 +94,12 @@ public class HomeController extends Controller {
 		Form<TaskListViewModel> formdata = personform.bindFromRequest();
 		int accountNo = 999;
 		Connection conn = db.getConnection();
-		List<TaskListViewModel> form = taskListService.select(conn,accountNo,taskNo);
+		List<TaskListDTO> form = taskListService.select(conn,accountNo,taskNo);
 		TaskListViewModel temp = new TaskListViewModel();
 		long miliseconds = System.currentTimeMillis();
 		Date nowDateTime = new Date(miliseconds);
 		temp.setAccountNo(accountNo);
-		for(TaskListViewModel tempList : form){
+		for(TaskListDTO tempList : form){
 			temp.settaskNo(tempList.taskNo);
 			temp.setTaskName(tempList.taskName);
 			temp.setTaskContents(tempList.taskContents);
@@ -121,12 +135,12 @@ public class HomeController extends Controller {
 		Form<TaskListViewModel> formdata = personform.bindFromRequest();
 		int accountNo = 999;
 		Connection conn = db.getConnection();
-		List<TaskListViewModel> form = taskListService.select(conn,accountNo,taskNo);
+		List<TaskListDTO> form = taskListService.select(conn,accountNo,taskNo);
 		TaskListViewModel temp = new TaskListViewModel();
 		long miliseconds = System.currentTimeMillis();
 		Date nowDateTime = new Date(miliseconds);
 		temp.setAccountNo(accountNo);
-		for(TaskListViewModel tempList : form){
+		for(TaskListDTO tempList : form){
 			temp.settaskNo(tempList.taskNo);
 			temp.setTaskName(tempList.taskName);
 			temp.setTaskContents(tempList.taskContents);

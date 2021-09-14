@@ -1,5 +1,6 @@
 package models;
 
+import app.*;
 import play.mvc.*;
 import java.util.*;
 import javax.inject.*;
@@ -16,23 +17,27 @@ import java.time.LocalDateTime;
 
 public class TaskListService {
 protected TaskListDAO taskListDAO = new TaskListImplements();
+//protected enum screenStatus{CREATE,EDIT,DELETE,}
+@Inject Database db;
 
-public String Validation(TaskListViewModel task){
-    String errorMsg = "";
-    /*Connection conn = db.getConnection();
+public List<String> Validation(Connection conn,TaskListViewModel task,String status){
+    List<String> errorMsg = new ArrayList<String>();
+    //Connection conn = db.getConnection();
     int accountNo = 999;
-    List<TaskListViewModel> tempList= select(conn,accountNo,taskNo);
-    if(tempList.count() >= 0){
-        errorMsg += errorMsg+"タスクNoが重複しています。";
-    }*/
+
+    //タスクNo重複チェック
+    List<TaskListDTO> tempList= select(conn,accountNo,task.taskNo);
+    if(status == app.Enum.screenStatus.CREATE.toString() && tempList.size() > 0){
+        errorMsg.add("タスクNoが重複しています。");
+    }
     return errorMsg;
 }
 
-public List<TaskListViewModel> selectAll(Connection conn){
+public List<TaskListDTO> selectAll(Connection conn){
     return taskListDAO.selectAll(conn);
 }
 
-public List<TaskListViewModel> select(Connection conn,int accountNo,int taskNo){
+public List<TaskListDTO> select(Connection conn,int accountNo,int taskNo){
     return taskListDAO.select(conn,accountNo,taskNo);
 }
 
