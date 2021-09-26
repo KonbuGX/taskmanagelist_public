@@ -4,8 +4,8 @@ import java.util.*;
 
 
 public class AccountDTO {
-	protected Integer id;
-	public String name;
-	public String mail;
-	public String tel;
+	public Integer accountNo;
+	public String accountName;
+	public String password;
+	public Date lastUpdate;
 }

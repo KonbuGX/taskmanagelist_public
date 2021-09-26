@@ -3,17 +3,26 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
+GET     /                           controllers.MangaRecordController.mangaRecord
+GET     /login                           controllers.MangaRecordController.login()
+GET     /signup                           controllers.MangaRecordController.signup()
+POST    /accountCreate             controllers.MangaRecordController.accountCreate()
+POST    /signin             controllers.MangaRecordController.signin()
+GET    /signout             controllers.MangaRecordController.mangaRecord
+POST    /signout             controllers.MangaRecordController.signout()
+
+GET     /index                           controllers.HomeController.index
+POST     /index                           controllers.HomeController.index
 GET     /regi                           controllers.HomeController.regi
 
 GET     /add                   controllers.HomeController.add()
 POST    /create                controllers.HomeController.create()
 
-GET     /edit/:taskNo                   controllers.HomeController.edit(taskNo:Int)
-POST    /update/:taskNo                controllers.HomeController.update(taskNo:Int)
+GET     /edit/:EncodedResult                   controllers.HomeController.edit(EncodedResult:String)
+POST    /update/:EncodedResult                controllers.HomeController.update(EncodedResult:String)
 
-GET     /delete/:taskNo                   controllers.HomeController.delete(taskNo:Int)
-POST    /remove/:taskNo                controllers.HomeController.remove(taskNo:Int)
+GET     /delete/:EncodedResult                   controllers.HomeController.delete(EncodedResult:String)
+POST    /remove/:EncodedResult                controllers.HomeController.remove(EncodedResult:String)
 
 
 # Map static resources from the /public folder to the /assets URL path

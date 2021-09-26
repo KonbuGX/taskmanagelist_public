@@ -1,8 +1,8 @@
-@(message:String,form:Form[TaskListViewModel],taskNo:Int)
+@(message:String,form:Form[TaskListViewModel],encodedResult:String)
 @main() {
   <h1>タスク管理</h1>
   <p>@Html(message)</p>
-  	@helper.form(action=routes.HomeController.update(taskNo)){
+  	@helper.form(action=routes.HomeController.update(encodedResult)){
   	@helper.CSRF.formField
   	<div class="other_item">
   	@helper.inputText(form("taskName"),'_label -> "タスク名")
@@ -10,7 +10,7 @@
 	@helper.select(form("status"),options = helper.options(("未着手","未着手"),("処理中","処理中"),("完了","完了")),'_label -> "ステータス")
   	@helper.textarea(form("taskContents"),'_label -> "タスク内容",'cols ->40,'rows ->10)
   	</div>
-  	<button class="regi" value=taskNo>更新</button>
+  	<button class="regi">更新</button>
   	}
-  	<a href="/" class="delete regi">戻る</a>
+  	<a href="/index" class="delete regi">戻る</a>
 }

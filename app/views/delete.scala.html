@@ -1,9 +1,9 @@
-@(message:String,form:Form[TaskListViewModel],taskNo:Int)
+@(message:String,form:Form[TaskListViewModel],taskNo:Int,encodedResult:String)
 @main() {
   <h1>タスク管理</h1>
   <p>@Html(message)</p>
   <div class="other_item">
-  	@helper.form(action=routes.HomeController.remove(taskNo)){
+  	@helper.form(action=routes.HomeController.remove(encodedResult)){
   	@helper.CSRF.formField
   	@helper.inputText(form("taskNo"),'_label -> "タスクNo",'disabled -> "disabled")
   	@helper.inputText(form("taskName"),'_label -> "タスク名",'disabled -> "disabled")
@@ -13,5 +13,5 @@
   </div>	
   	<button class="regi">削除</button>
   	}
-  	  <a href="/" class="delete regi">戻る</a>
+  	  <a href="/index" class="delete regi">戻る</a>
 }

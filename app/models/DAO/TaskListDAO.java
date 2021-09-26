@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 
 public interface TaskListDAO {
 	public List<TaskListDTO> selectAll(Connection conn);
+	public List<TaskListDTO> selectByAccountNo(Connection conn,int accountNo);
 	public List<TaskListDTO> select(Connection conn,int accountNo,int taskNo);
 	public String insertTask(Connection conn,TaskListViewModel task);
 	public String updateTask(Connection conn,TaskListViewModel task);

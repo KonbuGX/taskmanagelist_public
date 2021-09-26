@@ -5,7 +5,6 @@
   	@helper.form(action=routes.HomeController.create()){
   	@helper.CSRF.formField
   	<div class="other_item">
-  	@helper.inputText(form("taskNo"),'_label -> "タスクNo")
   	@helper.inputText(form("taskName"),'_label -> "タスク名")
   	@helper.inputDate(form("deadLine"),'_label -> "期日")
 	@helper.select(form("status"),options = helper.options(("未着手","未着手"),("処理中","処理中"),("完了","完了")),'_label -> "ステータス")
@@ -13,5 +12,5 @@
   	</div>
   	<button class="regi">登録</button>
   	}
-   <a href="/" class="delete regi">戻る</a>
+   <a href="/index" class="delete regi">戻る</a>
 }

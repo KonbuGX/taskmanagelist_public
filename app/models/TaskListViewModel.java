@@ -24,7 +24,7 @@ public class TaskListViewModel extends Model{
 	public String status;
     public Date lastUpdate;
 	public List<TaskListDTO> taskList;
-
+    public String encodedResult;
 
    public TaskListViewModel(){
         super();
@@ -90,6 +90,11 @@ public class TaskListViewModel extends Model{
 	
 	public Date getLastupdate() {return lastUpdate;}
 
+	public void setEncodedResult(String encodedResult) {
+		this.encodedResult = encodedResult;
+	}
+	
+	public String getEncodedResult() {return encodedResult;}
 
 	@Override
 	public String toString(){

@@ -22,10 +22,10 @@ import play.mvc.Http.Context.Implicit._
 import play.data._
 import play.core.j.PlayFormsMagicForJava._
 
-object delete extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template3[String,Form[TaskListViewModel],Int,play.twirl.api.HtmlFormat.Appendable] {
+object delete extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template4[String,Form[TaskListViewModel],Int,String,play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*1.2*/(message:String,form:Form[TaskListViewModel],taskNo:Int):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*1.2*/(message:String,form:Form[TaskListViewModel],taskNo:Int,encodedResult:String):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
@@ -34,7 +34,7 @@ Seq[Any](_display_(/*2.2*/main()/*2.8*/ {_display_(Seq[Any](format.raw/*2.10*/("
   """),format.raw/*3.3*/("""<h1>タスク管理</h1>
   <p>"""),_display_(/*4.7*/Html(message)),format.raw/*4.20*/("""</p>
   <div class="other_item">
-  	"""),_display_(/*6.5*/helper/*6.11*/.form(action=routes.HomeController.remove(taskNo))/*6.61*/{_display_(Seq[Any](format.raw/*6.62*/("""
+  	"""),_display_(/*6.5*/helper/*6.11*/.form(action=routes.HomeController.remove(encodedResult))/*6.68*/{_display_(Seq[Any](format.raw/*6.69*/("""
   	"""),_display_(/*7.5*/helper/*7.11*/.CSRF.formField),format.raw/*7.26*/("""
   	"""),_display_(/*8.5*/helper/*8.11*/.inputText(form("taskNo"),'_label -> "タスクNo",'disabled -> "disabled")),format.raw/*8.80*/("""
   	"""),_display_(/*9.5*/helper/*9.11*/.inputText(form("taskName"),'_label -> "タスク名",'disabled -> "disabled")),format.raw/*9.81*/("""
@@ -44,16 +44,15 @@ Seq[Any](_display_(/*2.2*/main()/*2.8*/ {_display_(Seq[Any](format.raw/*2.10*/("
   """),format.raw/*13.3*/("""</div>	
   	<button class="regi">削除</button>
   	""")))}),format.raw/*15.5*/("""
-  	  """),format.raw/*16.6*/("""<a href="/" class="delete regi">戻る</a>
-""")))}),format.raw/*17.2*/("""
-"""))
+  	  """),format.raw/*16.6*/("""<a href="/index" class="delete regi">戻る</a>
+""")))}))
       }
     }
   }
 
-  def render(message:String,form:Form[TaskListViewModel],taskNo:Int): play.twirl.api.HtmlFormat.Appendable = apply(message,form,taskNo)
+  def render(message:String,form:Form[TaskListViewModel],taskNo:Int,encodedResult:String): play.twirl.api.HtmlFormat.Appendable = apply(message,form,taskNo,encodedResult)
 
-  def f:((String,Form[TaskListViewModel],Int) => play.twirl.api.HtmlFormat.Appendable) = (message,form,taskNo) => apply(message,form,taskNo)
+  def f:((String,Form[TaskListViewModel],Int,String) => play.twirl.api.HtmlFormat.Appendable) = (message,form,taskNo,encodedResult) => apply(message,form,taskNo,encodedResult)
 
   def ref: this.type = this
 
@@ -62,11 +61,11 @@ Seq[Any](_display_(/*2.2*/main()/*2.8*/ {_display_(Seq[Any](format.raw/*2.10*/("
 
               /*
                   -- GENERATED --
-                  DATE: 2021-09-05T21:14:47.005
+                  DATE: 2021-09-24T11:44:25.859
                   SOURCE: /Users/bunsawatsubasa1/taskmanagelist/app/views/delete.scala.html
-                  HASH: b9b0ea37d66c736546a39659f0b440bfec4dc78a
-                  MATRIX: 977->1|1127->59|1140->65|1179->67|1208->70|1254->91|1287->104|1348->140|1362->146|1420->196|1458->197|1488->202|1502->208|1537->223|1567->228|1581->234|1670->303|1700->308|1714->314|1804->384|1835->389|1850->395|1939->463|1968->466|1982->472|2072->541|2103->546|2118->552|2236->648|2266->651|2344->699|2377->705|2447->745
-                  LINES: 28->1|33->2|33->2|33->2|34->3|35->4|35->4|37->6|37->6|37->6|37->6|38->7|38->7|38->7|39->8|39->8|39->8|40->9|40->9|40->9|41->10|41->10|41->10|42->11|42->11|42->11|43->12|43->12|43->12|44->13|46->15|47->16|48->17
+                  HASH: 7df23322645465444b7710fae0324162a062849b
+                  MATRIX: 984->1|1155->80|1168->86|1207->88|1236->91|1282->112|1315->125|1376->161|1390->167|1455->224|1493->225|1523->230|1537->236|1572->251|1602->256|1616->262|1705->331|1735->336|1749->342|1839->412|1870->417|1885->423|1974->491|2003->494|2017->500|2107->569|2138->574|2153->580|2271->676|2301->679|2379->727|2412->733
+                  LINES: 28->1|33->2|33->2|33->2|34->3|35->4|35->4|37->6|37->6|37->6|37->6|38->7|38->7|38->7|39->8|39->8|39->8|40->9|40->9|40->9|41->10|41->10|41->10|42->11|42->11|42->11|43->12|43->12|43->12|44->13|46->15|47->16
                   -- GENERATED --
               */
           

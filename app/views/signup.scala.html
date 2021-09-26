@@ -2,13 +2,13 @@
 @main() {
   <h1>タスク管理</h1>
   <p>@Html(message)</p>
-  	@helper.form(action=routes.MangaRecordController.signin()){
+  	@helper.form(action=routes.MangaRecordController.accountCreate()){
   	@helper.CSRF.formField
   	<div class="other_item">
 		@helper.inputText(form("accountName"),'_label -> "アカウント名")
   	    @helper.inputText(form("password"),'_label -> "パスワード")
   	</div>
-  	<button class="regi">ログイン</button>
+  	<button class="regi">新規作成</button>
   	}
 	<a href="/" class="regi">戻る</a>
 }

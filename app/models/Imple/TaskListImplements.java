@@ -63,13 +63,13 @@ public class TaskListImplements implements TaskListDAO {
     	return list;
     }
 
-	public List<TaskListDTO> select(Connection conn,int accountNo,int taskNo){
+    public List<TaskListDTO> selectByAccountNo(Connection conn,int accountNo){
 		List<TaskListDTO> list = new ArrayList<TaskListDTO>();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try{
-    		Statement stmt = conn.createStatement();
-    		ResultSet rs = stmt.executeQuery("SELECT * from TaskList where accountNo="+accountNo+" and taskNo="+taskNo);
-    		
+			PreparedStatement ps = conn.prepareStatement("SELECT * from TaskList where accountNo=? ORDER BY taskNo ASC;");
+            ps.setInt(1, accountNo);
+    		ResultSet rs = ps.executeQuery();
     		while(rs.next()){
 				TaskListDTO temp = new TaskListDTO();
 				//ローカルではSQLiteのためコメントアウト。近々postgresqlに変更予定。
@@ -85,7 +85,53 @@ public class TaskListImplements implements TaskListDAO {
 				list.add(temp);
     		}
     		rs.close();
-    		stmt.close();
+    		ps.close();
+            conn.close();
+    	}catch (Exception e){ 
+            List<TaskListDTO> tempList = new ArrayList<TaskListDTO>();
+			TaskListDTO temp = new TaskListDTO();
+			long miliseconds = System.currentTimeMillis();
+			Date nowDateTime = new Date(miliseconds);
+			String msg = e.toString();
+
+			temp.accountNo = 9999;
+			temp.taskNo = 9999;
+			temp.taskName = "";
+			temp.taskContents = msg;
+			temp.deadLine = nowDateTime;
+			temp.status = "";
+			temp.lastUpdate = nowDateTime;
+			tempList.add(temp);
+            return tempList;
+        }
+    	return list;
+    }
+
+	public List<TaskListDTO> select(Connection conn,int accountNo,int taskNo){
+		List<TaskListDTO> list = new ArrayList<TaskListDTO>();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        try{
+			PreparedStatement ps = conn.prepareStatement("SELECT * from TaskList where accountNo=? and taskNo=?");
+            ps.setInt(1, accountNo);
+			ps.setInt(2, taskNo);
+    		ResultSet rs = ps.executeQuery();
+
+    		while(rs.next()){
+				TaskListDTO temp = new TaskListDTO();
+				//ローカルではSQLiteのためコメントアウト。近々postgresqlに変更予定。
+		        //Date nowDateTime = new java.sql.Date(Long.valueOf(rs.getString("deadLine")));
+				//Date nowDateTime2 = new java.sql.Date(Long.valueOf(rs.getString("lastUpdate")));
+				temp.accountNo = rs.getInt("accountNo");
+				temp.taskNo = rs.getInt("taskNo");
+				temp.taskName = rs.getString("taskName");
+				temp.taskContents = rs.getString("taskContents");
+				temp.deadLine = rs.getDate("deadLine");
+				temp.status = rs.getString("status");
+				temp.lastUpdate = rs.getDate("lastUpdate");
+				list.add(temp);
+    		}
+    		rs.close();
+    		ps.close();
             conn.close();
     	}catch (Exception e){ 
             List<TaskListDTO> tempList = new ArrayList<TaskListDTO>();
@@ -120,11 +166,6 @@ public class TaskListImplements implements TaskListDAO {
          String formattedDate2 = simpleDateFormat.format(task.getLastupdate());
          java.sql.Date date1 = java.sql.Date.valueOf(formattedDate);
          java.sql.Date date2 = java.sql.Date.valueOf(formattedDate2);
-
-			//Date date1 = new java.sql.Date(Long.valueOf(formattedDate));
-	       //Date date2 = new java.sql.Date(Long.valueOf(formattedDate2));
-         long miliseconds = System.currentTimeMillis();
-			Date nowDateTime = new Date(miliseconds);
 		try{
 			PreparedStatement ps = conn.prepareStatement("insert into TaskList(accountNo,taskNo,taskName,taskContents,deadLine,status,lastUpdate) values(?,?,?,?,?,?,?)");
 			ps.setInt(1,accountNo);	
@@ -157,7 +198,7 @@ public class TaskListImplements implements TaskListDAO {
          java.sql.Date date1 = java.sql.Date.valueOf(formattedDate);
          java.sql.Date date2 = java.sql.Date.valueOf(formattedDate2);
 		 try{
-			PreparedStatement ps = conn.prepareStatement( "update tasklist set taskName=?,taskContents=?,deadLine=?,status=?,lastUpdate=? where accountNo=? and taskNo=?");
+			PreparedStatement ps = conn.prepareStatement( "update TaskList set taskName=?,taskContents=?,deadLine=?,status=?,lastUpdate=? where accountNo=? and taskNo=?");
 			ps.setString(1,taskName);	
 			ps.setString(2,taskContents);
 			ps.setDate(3,date1);
@@ -179,7 +220,7 @@ public class TaskListImplements implements TaskListDAO {
 		try{
 			//Connection conn = db.getConnection();
 			PreparedStatement ps = conn.prepareStatement(
-				"delete from tasklist where accountNo=? and taskNo=?");
+				"delete from TaskList where accountNo=? and taskNo=?");
             ps.setInt(1,accountNo);	
 			ps.setInt(2,taskNo);
 			ps.executeUpdate();
