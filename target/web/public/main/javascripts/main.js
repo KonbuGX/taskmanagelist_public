@@ -19,6 +19,5 @@ function dialogHide() {
 function dialogShow() {
     var dialog = document.getElementById("dialog");
     dialog.style.display = "block";
-    window.scrollTo(0, 0);
     return;
 }
