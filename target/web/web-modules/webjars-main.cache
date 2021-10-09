@@ -163,6 +163,7 @@ bootstrap/css/bootstrap.rtl.min-jsf.css:1632452288000:META-INF/resources/webjars
 popper.js/esm/dom-utils/getBoundingClientRect.js:499108500000:META-INF/resources/webjars/popper.js/2.9.3/esm/dom-utils/getBoundingClientRect.js
 bootstrap/scss/mixins/_text-truncate.scss:1630975064000:META-INF/resources/webjars/bootstrap/5.1.1/scss/mixins/_text-truncate.scss
 bootstrap/scss/_mixins.scss.gz:1632452288000:META-INF/resources/webjars/bootstrap/5.1.1/scss/_mixins.scss.gz
+requirejs/require.js:1541967672000:META-INF/resources/webjars/requirejs/2.3.6/require.js
 bootstrap/scss/_list-group.scss.gz:1632452288000:META-INF/resources/webjars/bootstrap/5.1.1/scss/_list-group.scss.gz
 bootstrap/js/bootstrap.min.js.map:1630975064000:META-INF/resources/webjars/bootstrap/5.1.1/js/bootstrap.min.js.map
 bootstrap/scss/forms/_validation.scss.gz:1632452288000:META-INF/resources/webjars/bootstrap/5.1.1/scss/forms/_validation.scss.gz
@@ -289,6 +290,7 @@ jquery/webjars-requirejs.js:1614656398000:META-INF/resources/webjars/jquery/3.6.
 bootstrap/scss/helpers/_ratio.scss.gz:1632452288000:META-INF/resources/webjars/bootstrap/5.1.1/scss/helpers/_ratio.scss.gz
 bootstrap/scss/_alert.scss.gz:1632452288000:META-INF/resources/webjars/bootstrap/5.1.1/scss/_alert.scss.gz
 bootstrap/js/bootstrap.esm.min.js:1630975064000:META-INF/resources/webjars/bootstrap/5.1.1/js/bootstrap.esm.min.js
+requirejs/require.min.js:1541967672000:META-INF/resources/webjars/requirejs/2.3.6/require.min.js
 bootstrap/css/bootstrap-utilities.min.css.map:1630975064000:META-INF/resources/webjars/bootstrap/5.1.1/css/bootstrap-utilities.min.css.map
 bootstrap/scss/mixins/_reset-text.scss:1630975064000:META-INF/resources/webjars/bootstrap/5.1.1/scss/mixins/_reset-text.scss
 bootstrap/css/bootstrap-reboot.css:1630975064000:META-INF/resources/webjars/bootstrap/5.1.1/css/bootstrap-reboot.css

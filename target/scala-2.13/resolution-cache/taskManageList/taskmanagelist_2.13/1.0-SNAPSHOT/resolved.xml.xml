@@ -4,7 +4,7 @@
 		module="taskmanagelist_2.13"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20211009143944"
+		publication="20211009153750"
 	>
 		<description>
 		taskmanagelist
@@ -60,6 +60,7 @@
 		<dependency org="org.mindrot" name="jbcrypt" rev="0.4" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.play" name="play-java-jpa_2.13" rev="2.7.3" conf="compile->default(compile)"/>
 		<dependency org="org.hibernate" name="hibernate-entitymanager" rev="5.1.0.Final" conf="compile->default(compile)"/>
+		<dependency org="org.webjars" name="webjars-play_2.13" rev="2.8.8" conf="compile->default(compile)"/>
 		<dependency org="org.webjars" name="jquery" rev="3.6.0" conf="compile->default(compile)"/>
 		<dependency org="org.webjars" name="bootstrap" rev="5.1.1" conf="compile->default(compile)"/>
 		<dependency org="org.webjars" name="popper.js" rev="2.9.3" conf="compile->default(compile)"/>
