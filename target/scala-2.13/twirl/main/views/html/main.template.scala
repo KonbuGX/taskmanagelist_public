@@ -42,7 +42,7 @@ Seq[Any](format.raw/*8.1*/("""
 <head>
     """),format.raw/*13.58*/("""
     """),format.raw/*14.5*/("""<title>タスク管理</title>
-    <link rel="stylesheet" media="screen" href=""""),_display_(/*15.50*/routes/*15.56*/.Assets.versioned("lib/bootstrap/css/bootstrap.min.css")),format.raw/*15.112*/("""">
+    <link rel="stylesheet" media="screen" href=""""),_display_(/*15.50*/routes/*15.56*/.Assets.versioned("lib/bootstrap/css/bootstrap.css")),format.raw/*15.108*/("""">
     <link rel="stylesheet" media="screen" href=""""),_display_(/*16.50*/routes/*16.56*/.Assets.versioned("stylesheets/main.css")),format.raw/*16.97*/("""">
     <link rel="shortcut icon" type="image/png" href=""""),_display_(/*17.55*/routes/*17.61*/.Assets.versioned("images/favicon.png")),format.raw/*17.100*/("""">
 </head>
@@ -72,10 +72,10 @@ Seq[Any](format.raw/*8.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: 2021-10-09T17:38:03.467
+                  DATE: 2021-10-09T18:03:21.292
                   SOURCE: /Users/bunsawatsubasa1/taskmanagelist/app/views/main.scala.html
-                  HASH: 227cfa594558650bf45a13368fdc85975d4c74b9
-                  MATRIX: 1194->255|1305->273|1332->274|1405->372|1437->377|1534->447|1549->453|1627->509|1706->561|1721->567|1783->608|1867->665|1882->671|1943->710|1994->818|2026->824|2054->831|2086->836|2127->850|2142->856|2208->901|2288->954|2303->960|2364->1000|2444->1053|2459->1059|2532->1111|2612->1164|2627->1170|2702->1224
+                  HASH: dbde2a0e43282a47274257e4af7c44a6fe026a41
+                  MATRIX: 1194->255|1305->273|1332->274|1405->372|1437->377|1534->447|1549->453|1623->505|1702->557|1717->563|1779->604|1863->661|1878->667|1939->706|1990->814|2022->820|2050->827|2082->832|2123->846|2138->852|2204->897|2284->950|2299->956|2360->996|2440->1049|2455->1055|2528->1107|2608->1160|2623->1166|2698->1220
                   LINES: 33->7|38->8|39->9|43->13|44->14|45->15|45->15|45->15|46->16|46->16|46->16|47->17|47->17|47->17|51->22|52->23|52->23|53->24|53->24|53->24|53->24|54->25|54->25|54->25|55->26|55->26|55->26|56->27|56->27|56->27
                   -- GENERATED --
               */
