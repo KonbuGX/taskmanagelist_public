@@ -7,41 +7,41 @@
 		revision="1.0-SNAPSHOT"
 		conf="runtime"
 		confs="compile, runtime, test, provided, optional, web-assets, web-assets-test, web-plugin, universal, universal-docs, universal-src, windows, docker, linux, rpm, debian, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool, docs"
-		date="20210926133427"/>
+		date="20211009143944"/>
 	<dependencies>
-		<module organisation="org.webjars" name="jquery">
-			<revision name="3.6.0" status="release" pubdate="20210303044031" resolver="public" artresolver="public" homepage="http://webjars.org" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="99">
-				<license name="MIT License" url="https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt"/>
-				<metadata-artifact status="successful" details="" size="7385" time="653" location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/jquery/ivy-3.6.0.xml" searched="true" original-local-location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/jquery/ivy-3.6.0.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/webjars/jquery/3.6.0/jquery-3.6.0.pom"/>
-				<caller organisation="taskManageList" name="taskmanagelist_2.13" conf="compile, runtime" rev="3.6.0" rev-constraint-default="3.6.0" rev-constraint-dynamic="3.6.0" callerrev="1.0-SNAPSHOT"/>
-				<artifacts>
-					<artifact name="jquery" type="jar" ext="jar" status="successful" details="" size="313648" time="3068" location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/jquery/jars/jquery-3.6.0.jar">
-						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/webjars/jquery/3.6.0/jquery-3.6.0.jar"/>
-					</artifact>
-				</artifacts>
-			</revision>
-		</module>
 		<module organisation="org.webjars" name="bootstrap">
-			<revision name="5.1.1" status="release" pubdate="20210925025902" resolver="public" artresolver="public" homepage="http://webjars.org" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="97">
+			<revision name="5.1.1" status="release" pubdate="20210925025902" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="98">
 				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
-				<metadata-artifact status="successful" details="" size="7867" time="911" location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/bootstrap/ivy-5.1.1.xml" searched="true" original-local-location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/bootstrap/ivy-5.1.1.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/webjars/bootstrap/5.1.1/bootstrap-5.1.1.pom"/>
+				<metadata-artifact status="no" details="" size="4032" time="0" location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/bootstrap/ivy-5.1.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/webjars/bootstrap/5.1.1/bootstrap-5.1.1.pom"/>
 				<caller organisation="taskManageList" name="taskmanagelist_2.13" conf="compile, runtime" rev="5.1.1" rev-constraint-default="5.1.1" rev-constraint-dynamic="5.1.1" callerrev="1.0-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="bootstrap" type="jar" ext="jar" status="successful" details="" size="2246043" time="4162" location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/bootstrap/jars/bootstrap-5.1.1.jar">
+					<artifact name="bootstrap" type="jar" ext="jar" status="no" details="" size="2246043" time="0" location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/bootstrap/jars/bootstrap-5.1.1.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/webjars/bootstrap/5.1.1/bootstrap-5.1.1.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="org.webjars" name="popper.js">
-			<revision name="2.9.3" status="release" pubdate="20210806045452" resolver="public" artresolver="public" homepage="http://webjars.org" downloaded="true" searched="true" default="false" conf="default, compile, runtime(*), master(compile), runtime, default(compile), compile(*), master" position="98">
+			<revision name="2.9.3" status="release" pubdate="20210806045452" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime(*), master(compile), runtime, default(compile), compile(*), master" position="99">
 				<license name="MIT" url="https://github.com/FezVrasta/popper.js/raw/master/LICENSE.md"/>
-				<metadata-artifact status="successful" details="" size="4458" time="877" location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/popper.js/ivy-2.9.3.xml" searched="true" original-local-location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/popper.js/ivy-2.9.3.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/webjars/popper.js/2.9.3/popper.js-2.9.3.pom"/>
+				<metadata-artifact status="no" details="" size="3554" time="0" location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/popper.js/ivy-2.9.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/webjars/popper.js/2.9.3/popper.js-2.9.3.pom"/>
 				<caller organisation="org.webjars" name="bootstrap" conf="default, compile, runtime, master" rev="2.9.3" rev-constraint-default="2.9.3" rev-constraint-dynamic="2.9.3" callerrev="5.1.1"/>
 				<caller organisation="taskManageList" name="taskmanagelist_2.13" conf="compile, runtime" rev="2.9.3" rev-constraint-default="2.9.3" rev-constraint-dynamic="2.9.3" callerrev="1.0-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="popper.js" type="jar" ext="jar" status="successful" details="" size="393613" time="3497" location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/popper.js/jars/popper.js-2.9.3.jar">
+					<artifact name="popper.js" type="jar" ext="jar" status="no" details="" size="393613" time="0" location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/popper.js/jars/popper.js-2.9.3.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/webjars/popper.js/2.9.3/popper.js-2.9.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.webjars" name="jquery">
+			<revision name="3.6.0" status="release" pubdate="20210303044031" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="97">
+				<license name="MIT License" url="https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt"/>
+				<metadata-artifact status="no" details="" size="3842" time="0" location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/jquery/ivy-3.6.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/webjars/jquery/3.6.0/jquery-3.6.0.pom"/>
+				<caller organisation="taskManageList" name="taskmanagelist_2.13" conf="compile, runtime" rev="3.6.0" rev-constraint-default="3.6.0" rev-constraint-dynamic="3.6.0" callerrev="1.0-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="jquery" type="jar" ext="jar" status="no" details="" size="313648" time="0" location="/Users/bunsawatsubasa1/.ivy2/cache/org.webjars/jquery/jars/jquery-3.6.0.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/webjars/jquery/3.6.0/jquery-3.6.0.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
