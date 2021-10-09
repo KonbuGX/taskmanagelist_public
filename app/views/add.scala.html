@@ -5,12 +5,12 @@
   	@helper.form(action=routes.HomeController.create()){
   	@helper.CSRF.formField
   	<div class="other_item">
-  	@helper.inputText(form("taskName"),'_label -> "タスク名")
-  	@helper.inputDate(form("deadLine"),'_label -> "期日")
-	@helper.select(form("status"),options = helper.options(("未着手","未着手"),("処理中","処理中"),("完了","完了")),'_label -> "ステータス")
-  	@helper.textarea(form("taskContents"),'_label -> "タスク内容",'cols ->40,'rows ->10)
+  	@helper.inputText(form("taskName"),'_label -> "タスク名")<br>
+  	@helper.inputDate(form("deadLine"),'_label -> "期日")<br>
+	@helper.select(form("status"),options = helper.options(("未着手","未着手"),("処理中","処理中"),("完了","完了")),'_label -> "ステータス")<br>
+  	@helper.textarea(form("taskContents"),'_label -> "タスク内容",'cols ->20,'rows ->5)
   	</div>
-  	<button class="regi">登録</button>
+  	<button class="button">登録</button>
   	}
-   <a href="/index" class="delete regi">戻る</a>
+   <button class="button" onclick="location.href='/index'">戻る</button>
 }

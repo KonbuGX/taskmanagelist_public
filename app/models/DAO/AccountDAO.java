@@ -15,9 +15,14 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 
 public interface AccountDAO {
+	//リストを全取得
 	public List<AccountDTO> selectAll(Connection conn);
+	//リストをaccountNameで指定しての取得
 	public List<AccountDTO> selectByName(Connection conn,String accountName);
-	public String insertTask(Connection conn,AccountViewModel task);
-	public String updateTask(Connection conn,AccountViewModel task);
-	public String deleteTask(Connection conn,int accountNo);
+	//インサート処理
+	public String insertAccount(Connection conn,AccountViewModel account);
+	//アップデート処理
+	public String updateAccount(Connection conn,AccountViewModel account);
+	//デリート処理
+	public String deleteAccount(Connection conn,int accountNo);
 }

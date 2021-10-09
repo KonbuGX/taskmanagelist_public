@@ -32,8 +32,8 @@ object mangaRecord extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.ap
 
 Seq[Any](_display_(/*2.2*/main()/*2.8*/ {_display_(Seq[Any](format.raw/*2.10*/("""
   """),format.raw/*3.3*/("""<h1>タスク管理</h1>
-  <a href="/login" class="add regi">ログイン</a>
-  <a href="/signup" class="add regi">新規登録</a>
+  <button class="button title_button" onclick="location.href='/login'">ログイン</button>
+  <button class="button" onclick="location.href='/signup'">新規登録</button>
 """)))}))
       }
     }
@@ -50,9 +50,9 @@ Seq[Any](_display_(/*2.2*/main()/*2.8*/ {_display_(Seq[Any](format.raw/*2.10*/("
 
               /*
                   -- GENERATED --
-                  DATE: 2021-09-20T17:03:07.028
+                  DATE: 2021-10-05T19:08:42.355
                   SOURCE: /Users/bunsawatsubasa1/taskmanagelist/app/views/mangaRecord.scala.html
-                  HASH: 2611b3e77828e5ee785750acd586c4e79db1aab4
+                  HASH: f7122b2fd153edbe2f457add33e0a981d100bd03
                   MATRIX: 947->1|1043->5|1056->11|1095->13|1124->16
                   LINES: 28->1|33->2|33->2|33->2|34->3
                   -- GENERATED --

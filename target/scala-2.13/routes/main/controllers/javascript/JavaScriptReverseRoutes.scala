@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/bunsawatsubasa1/taskmanagelist/conf/routes
-// @DATE:Thu Sep 23 18:39:15 JST 2021
+// @DATE:Thu Oct 07 20:32:10 JST 2021
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -85,7 +85,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:14
+  // @LINE:13
   class ReverseHomeController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -109,6 +109,16 @@ package controllers.javascript {
       """
         function() {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "create"})
+        }
+      """
+    )
+  
+    // @LINE:13
+    def accountDelete: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.accountDelete",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "accountDelete"})
         }
       """
     )
@@ -153,17 +163,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:16
-    def regi: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.HomeController.regi",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "regi"})
-        }
-      """
-    )
-  
-    // @LINE:14
+    // @LINE:15
     def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.index",
       """

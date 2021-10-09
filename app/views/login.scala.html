@@ -1,14 +1,16 @@
 @(message:String,form:Form[AccountViewModel])
 @main() {
-  <h1>タスク管理</h1>
-  <p>@Html(message)</p>
-  	@helper.form(action=routes.MangaRecordController.signin()){
-  	@helper.CSRF.formField
-  	<div class="other_item">
-		@helper.inputText(form("accountName"),'_label -> "アカウント名")
-  	    @helper.inputText(form("password"),'_label -> "パスワード")
-  	</div>
-  	<button class="regi">ログイン</button>
-  	}
-	<a href="/" class="regi">戻る</a>
+<h1>タスク管理</h1>
+<p>@Html(message)</p>
+@helper.form(action=routes.MangaRecordController.signin()){
+@helper.CSRF.formField
+<div class="login_item">
+    @helper.inputText(form("accountName"),'_label -> "アカウント名")
+    @helper.inputPassword(form("password"),'_label -> "パスワード")
+    <input type="checkbox" id="displayPassword" />
+    <label for="displayPassword">パスワードを表示</label>
+</div>
+<button class="button login_button">ログイン</button>
+}
+<button class="button" onclick="location.href='/'">戻る</button>
 }

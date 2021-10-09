@@ -36,15 +36,15 @@ Seq[Any](_display_(/*2.2*/main()/*2.8*/ {_display_(Seq[Any](format.raw/*2.10*/("
   <div class="other_item">
   	"""),_display_(/*6.5*/helper/*6.11*/.form(action=routes.HomeController.remove(encodedResult))/*6.68*/{_display_(Seq[Any](format.raw/*6.69*/("""
   	"""),_display_(/*7.5*/helper/*7.11*/.CSRF.formField),format.raw/*7.26*/("""
-  	"""),_display_(/*8.5*/helper/*8.11*/.inputText(form("taskNo"),'_label -> "タスクNo",'disabled -> "disabled")),format.raw/*8.80*/("""
-  	"""),_display_(/*9.5*/helper/*9.11*/.inputText(form("taskName"),'_label -> "タスク名",'disabled -> "disabled")),format.raw/*9.81*/("""
-  	"""),_display_(/*10.5*/helper/*10.11*/.inputDate(form("deadLine"),'_label -> "期日",'disabled -> "disabled")),format.raw/*10.79*/("""
-	"""),_display_(/*11.3*/helper/*11.9*/.inputText(form("status"),'_label -> "ステータス",'disabled -> "disabled")),format.raw/*11.78*/("""
-  	"""),_display_(/*12.5*/helper/*12.11*/.textarea(form("taskContents"),'_label -> "タスク内容",'cols ->40,'rows ->10,'disabled -> "disabled")),format.raw/*12.107*/("""
+  	"""),_display_(/*8.5*/helper/*8.11*/.inputText(form("taskNo"),'_label -> "タスクNo",'disabled -> "disabled")),format.raw/*8.80*/("""<br>
+  	"""),_display_(/*9.5*/helper/*9.11*/.inputText(form("taskName"),'_label -> "タスク名",'disabled -> "disabled")),format.raw/*9.81*/("""<br>
+  	"""),_display_(/*10.5*/helper/*10.11*/.inputDate(form("deadLine"),'_label -> "期日",'disabled -> "disabled")),format.raw/*10.79*/("""<br>
+	"""),_display_(/*11.3*/helper/*11.9*/.inputText(form("status"),'_label -> "ステータス",'disabled -> "disabled")),format.raw/*11.78*/("""<br>
+  	"""),_display_(/*12.5*/helper/*12.11*/.textarea(form("taskContents"),'_label -> "タスク内容",'cols ->20,'rows ->5,'disabled -> "disabled")),format.raw/*12.106*/("""
   """),format.raw/*13.3*/("""</div>	
-  	<button class="regi">削除</button>
+  	<button class="button">削除</button>
   	""")))}),format.raw/*15.5*/("""
-  	  """),format.raw/*16.6*/("""<a href="/index" class="delete regi">戻る</a>
+  	"""),format.raw/*16.4*/("""<button class="button" onclick="location.href='/index'">戻る</button>
 """)))}))
       }
     }
@@ -61,10 +61,10 @@ Seq[Any](_display_(/*2.2*/main()/*2.8*/ {_display_(Seq[Any](format.raw/*2.10*/("
 
               /*
                   -- GENERATED --
-                  DATE: 2021-09-24T11:44:25.859
+                  DATE: 2021-10-05T19:08:42.527
                   SOURCE: /Users/bunsawatsubasa1/taskmanagelist/app/views/delete.scala.html
-                  HASH: 7df23322645465444b7710fae0324162a062849b
-                  MATRIX: 984->1|1155->80|1168->86|1207->88|1236->91|1282->112|1315->125|1376->161|1390->167|1455->224|1493->225|1523->230|1537->236|1572->251|1602->256|1616->262|1705->331|1735->336|1749->342|1839->412|1870->417|1885->423|1974->491|2003->494|2017->500|2107->569|2138->574|2153->580|2271->676|2301->679|2379->727|2412->733
+                  HASH: fb02231b7a9cd04c03b8f0fba905ab496543535f
+                  MATRIX: 984->1|1155->80|1168->86|1207->88|1236->91|1282->112|1315->125|1376->161|1390->167|1455->224|1493->225|1523->230|1537->236|1572->251|1602->256|1616->262|1705->331|1739->340|1753->346|1843->416|1878->425|1893->431|1982->499|2015->506|2029->512|2119->581|2154->590|2169->596|2286->691|2316->694|2396->744|2427->748
                   LINES: 28->1|33->2|33->2|33->2|34->3|35->4|35->4|37->6|37->6|37->6|37->6|38->7|38->7|38->7|39->8|39->8|39->8|40->9|40->9|40->9|41->10|41->10|41->10|42->11|42->11|42->11|43->12|43->12|43->12|44->13|46->15|47->16
                   -- GENERATED --
               */

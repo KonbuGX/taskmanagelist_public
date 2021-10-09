@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 public class TaskListImplements implements TaskListDAO {
     @Inject Database db;
 
+	//リストを全取得
     public List<TaskListDTO> selectAll(Connection conn){
 		List<TaskListDTO> list = new ArrayList<TaskListDTO>();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -28,9 +29,6 @@ public class TaskListImplements implements TaskListDAO {
 			
     		while(rs.next()){
 				TaskListDTO temp = new TaskListDTO();
-				//ローカルではSQLiteのためコメントアウト。近々postgresqlに変更予定。
-		        //Date nowDateTime = new java.sql.Date(Long.valueOf(rs.getString("deadLine")));
-				//Date nowDateTime2 = new java.sql.Date(Long.valueOf(rs.getString("lastUpdate")));
 				temp.accountNo = rs.getInt("accountNo");
 				temp.taskNo = rs.getInt("taskNo");
 				temp.taskName = rs.getString("taskName");
@@ -63,6 +61,7 @@ public class TaskListImplements implements TaskListDAO {
     	return list;
     }
 
+	//accountNoで指定しての取得
     public List<TaskListDTO> selectByAccountNo(Connection conn,int accountNo){
 		List<TaskListDTO> list = new ArrayList<TaskListDTO>();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -72,9 +71,6 @@ public class TaskListImplements implements TaskListDAO {
     		ResultSet rs = ps.executeQuery();
     		while(rs.next()){
 				TaskListDTO temp = new TaskListDTO();
-				//ローカルではSQLiteのためコメントアウト。近々postgresqlに変更予定。
-		        //Date nowDateTime = new java.sql.Date(Long.valueOf(rs.getString("deadLine")));
-				//Date nowDateTime2 = new java.sql.Date(Long.valueOf(rs.getString("lastUpdate")));
 				temp.accountNo = rs.getInt("accountNo");
 				temp.taskNo = rs.getInt("taskNo");
 				temp.taskName = rs.getString("taskName");
@@ -107,6 +103,7 @@ public class TaskListImplements implements TaskListDAO {
     	return list;
     }
 
+	//accountNo,taskNoで指定しての取得
 	public List<TaskListDTO> select(Connection conn,int accountNo,int taskNo){
 		List<TaskListDTO> list = new ArrayList<TaskListDTO>();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -118,9 +115,6 @@ public class TaskListImplements implements TaskListDAO {
 
     		while(rs.next()){
 				TaskListDTO temp = new TaskListDTO();
-				//ローカルではSQLiteのためコメントアウト。近々postgresqlに変更予定。
-		        //Date nowDateTime = new java.sql.Date(Long.valueOf(rs.getString("deadLine")));
-				//Date nowDateTime2 = new java.sql.Date(Long.valueOf(rs.getString("lastUpdate")));
 				temp.accountNo = rs.getInt("accountNo");
 				temp.taskNo = rs.getInt("taskNo");
 				temp.taskName = rs.getString("taskName");
@@ -153,6 +147,7 @@ public class TaskListImplements implements TaskListDAO {
     	return list;
     }
 
+	//インサート処理
 	public String insertTask(Connection conn,TaskListViewModel task){
          int accountNo = task.getAccountNo();
          int taskNo= task.getTaskNo();
@@ -161,7 +156,6 @@ public class TaskListImplements implements TaskListDAO {
          String status= task.getStatus();
          
 		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		 
          String formattedDate = simpleDateFormat.format(task.getDeadline());
          String formattedDate2 = simpleDateFormat.format(task.getLastupdate());
          java.sql.Date date1 = java.sql.Date.valueOf(formattedDate);
@@ -185,6 +179,7 @@ public class TaskListImplements implements TaskListDAO {
         return null;
     }
 
+	//アップデート処理
     public String updateTask(Connection conn,TaskListViewModel task){
          int accountNo = task.getAccountNo();
          int taskNo= task.getTaskNo();
@@ -216,6 +211,7 @@ public class TaskListImplements implements TaskListDAO {
         return null;
     }
 
+	//accountNo,taskNoで指定しての削除
 	public String deleteTask(Connection conn,int accountNo,int taskNo){
 		try{
 			//Connection conn = db.getConnection();
@@ -224,6 +220,21 @@ public class TaskListImplements implements TaskListDAO {
             ps.setInt(1,accountNo);	
 			ps.setInt(2,taskNo);
 			ps.executeUpdate();
+
+            ps.close();
+            conn.close();
+		}catch (SQLException e){
+		    return e.toString();
+		}
+        return null;
+    }
+
+	//accountNoで指定しての削除
+	public String deleteTaskByAccountNo(Connection conn,int accountNo){
+		try{
+			PreparedStatement ps = conn.prepareStatement("DELETE from TaskList where accountNo=?");
+			ps.setInt(1,accountNo);
+            ps.executeUpdate();
 
             ps.close();
             conn.close();

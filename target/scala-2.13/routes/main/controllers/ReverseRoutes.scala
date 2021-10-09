@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/bunsawatsubasa1/taskmanagelist/conf/routes
-// @DATE:Thu Sep 23 18:39:15 JST 2021
+// @DATE:Thu Oct 07 20:32:10 JST 2021
 
 import play.api.mvc.Call
 
@@ -64,7 +64,7 @@ package controllers {
   
   }
 
-  // @LINE:14
+  // @LINE:13
   class ReverseHomeController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
@@ -81,6 +81,12 @@ package controllers {
     def create(): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "create")
+    }
+  
+    // @LINE:13
+    def accountDelete(): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "accountDelete")
     }
   
     // @LINE:25
@@ -107,18 +113,12 @@ package controllers {
       Call("POST", _prefix + { _defaultPrefix } + "update/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("EncodedResult", EncodedResult)))
     }
   
-    // @LINE:16
-    def regi(): Call = {
-      
-      Call("GET", _prefix + { _defaultPrefix } + "regi")
-    }
-  
-    // @LINE:14
+    // @LINE:15
     def index(): Call = {
     
       () match {
       
-        // @LINE:14
+        // @LINE:15
         case ()  =>
           
           Call("GET", _prefix + { _defaultPrefix } + "index")

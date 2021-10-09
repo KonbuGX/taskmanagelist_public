@@ -42,14 +42,14 @@ public class MangaRecordController extends Controller {
         return ok(views.html.mangaRecord.render());
     }
 
-    //ログイン画面表示
+    //ログインボタン押下時
     public Result login() {
         String msg = "";
     	Form<AccountViewModel> formdata = accountform.bindFromRequest();
         return ok(views.html.login.render(msg,formdata));
     }
 
-    //新規作成画面表示
+    //新規作成ボタン押下時
     public Result signup() {
         String msg = "";
     	Form<AccountViewModel> formdata = accountform.bindFromRequest();
@@ -57,14 +57,14 @@ public class MangaRecordController extends Controller {
         return ok(views.html.signup.render(msg,formdata));
     }
 
-    //アカウント作成
+    //作成ボタン押下時
     public Result accountCreate() {
     	Form<AccountViewModel> formdata = accountform.bindFromRequest();
         AccountViewModel form = formdata.get();
         Connection conn = db.getConnection();
         List<AccountDTO> tempList =  accountService.selectAll(conn);
 
-        //アカウントNoの決定
+        //アカウントNoの付番
         if(tempList.size()>0){
             int tempNo = 0;
             for(int i = 0;i<tempList.size();i++){
@@ -78,11 +78,12 @@ public class MangaRecordController extends Controller {
             form.accountNo = 1;
         }
 
-        //日付
+        //日付の取得
         long miliseconds = System.currentTimeMillis();
 		Date nowDateTime = new Date(miliseconds);
         form.lastUpdate = nowDateTime;
 
+        //エラーチェック
         Connection conn2 = db.getConnection();
         List<String> errorMsgList = accountService.Validation(conn2,form,app.Enum.screenStatus.SIGNIN.toString());
 		if(errorMsgList.size() > 0){
@@ -100,8 +101,9 @@ public class MangaRecordController extends Controller {
         String password = form.password;
         form.password = BCrypt.hashpw(password, BCrypt.gensalt());
 
+        //インサート処理
         Connection conn3 = db.getConnection();
-        String errorMsg = accountService.InsertTask(conn3,form);
+        String errorMsg = accountService.InsertAccount(conn3,form);
 		if(errorMsg != null){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
             form.accountNo = 0;
@@ -121,19 +123,21 @@ public class MangaRecordController extends Controller {
         AccountViewModel form = formdata.get();
         Connection conn = db.getConnection();
         String status = app.Enum.screenStatus.LOGIN.toString();
+
+        //エラーチェック
 		List<String> errorMsgList = accountService.Validation(conn,form,status);
 		if(errorMsgList.size() > 0){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br>";
 			for(String tempMsg : errorMsgList){
 				msg += "<div class="+"cont"+">"+tempMsg+"</div><br>";
 			}
+            form.password = "";
 			return ok(views.html.login.render(msg,formdata));
 		}
 
         //セッション追加
         Connection conn2 = db.getConnection();
         List<AccountDTO> tempList = accountService.selectByName(conn2,form.accountName);
-       
         int accountNo = 0;
         for(AccountDTO temp : tempList){
             accountNo = temp.accountNo;

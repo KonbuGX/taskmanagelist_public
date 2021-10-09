@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/bunsawatsubasa1/taskmanagelist/conf/routes
-// @DATE:Thu Sep 23 18:39:15 JST 2021
+// @DATE:Thu Oct 07 20:32:10 JST 2021
 
 package controllers;
 

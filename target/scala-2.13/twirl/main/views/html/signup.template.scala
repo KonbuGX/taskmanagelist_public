@@ -31,17 +31,19 @@ object signup extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.Htm
 
 
 Seq[Any](_display_(/*2.2*/main()/*2.8*/ {_display_(Seq[Any](format.raw/*2.10*/("""
-  """),format.raw/*3.3*/("""<h1>タスク管理</h1>
-  <p>"""),_display_(/*4.7*/Html(message)),format.raw/*4.20*/("""</p>
-  	"""),_display_(/*5.5*/helper/*5.11*/.form(action=routes.MangaRecordController.accountCreate())/*5.69*/{_display_(Seq[Any](format.raw/*5.70*/("""
-  	"""),_display_(/*6.5*/helper/*6.11*/.CSRF.formField),format.raw/*6.26*/("""
-  	"""),format.raw/*7.4*/("""<div class="other_item">
-		"""),_display_(/*8.4*/helper/*8.10*/.inputText(form("accountName"),'_label -> "アカウント名")),format.raw/*8.61*/("""
-  	    """),_display_(/*9.9*/helper/*9.15*/.inputText(form("password"),'_label -> "パスワード")),format.raw/*9.62*/("""
-  	"""),format.raw/*10.4*/("""</div>
-  	<button class="regi">新規作成</button>
-  	""")))}),format.raw/*12.5*/("""
-	"""),format.raw/*13.2*/("""<a href="/" class="regi">戻る</a>
+"""),format.raw/*3.1*/("""<h1>タスク管理</h1>
+<p>"""),_display_(/*4.5*/Html(message)),format.raw/*4.18*/("""</p>
+"""),_display_(/*5.2*/helper/*5.8*/.form(action=routes.MangaRecordController.accountCreate())/*5.66*/{_display_(Seq[Any](format.raw/*5.67*/("""
+"""),_display_(/*6.2*/helper/*6.8*/.CSRF.formField),format.raw/*6.23*/("""
+"""),format.raw/*7.1*/("""<div class="login_item">
+    """),_display_(/*8.6*/helper/*8.12*/.inputText(form("accountName"),'_label -> "アカウント名")),format.raw/*8.63*/("""
+    """),_display_(/*9.6*/helper/*9.12*/.inputPassword(form("password"),'_label -> "パスワード")),format.raw/*9.63*/("""
+    """),format.raw/*10.5*/("""<input type="checkbox" id="displayPassword" />
+    <label for="displayPassword">パスワードを表示</label>
+</div>
+<button class="button login_button">新規作成</button>
+""")))}),format.raw/*14.2*/("""
+"""),format.raw/*15.1*/("""<button class="button" onclick="location.href='/'">戻る</button>
 """)))}))
       }
     }
@@ -58,11 +60,11 @@ Seq[Any](_display_(/*2.2*/main()/*2.8*/ {_display_(Seq[Any](format.raw/*2.10*/("
 
               /*
                   -- GENERATED --
-                  DATE: 2021-09-20T17:40:47.070
+                  DATE: 2021-10-08T09:14:24.942
                   SOURCE: /Users/bunsawatsubasa1/taskmanagelist/app/views/signup.scala.html
-                  HASH: e492a6d6802b03b648bb271400167fbe1fc759b5
-                  MATRIX: 972->1|1110->47|1123->53|1162->55|1191->58|1237->79|1270->92|1304->101|1318->107|1384->165|1422->166|1452->171|1466->177|1501->192|1531->196|1584->224|1598->230|1669->281|1703->290|1717->296|1784->343|1815->347|1894->396|1923->398
-                  LINES: 28->1|33->2|33->2|33->2|34->3|35->4|35->4|36->5|36->5|36->5|36->5|37->6|37->6|37->6|38->7|39->8|39->8|39->8|40->9|40->9|40->9|41->10|43->12|44->13
+                  HASH: a47d2b8bb8b0d60e84862c34558a6920c2c2faf3
+                  MATRIX: 972->1|1110->47|1123->53|1162->55|1189->56|1233->75|1266->88|1297->94|1310->100|1376->158|1414->159|1441->161|1454->167|1489->182|1516->183|1571->213|1585->219|1656->270|1687->276|1701->282|1772->333|1804->338|1989->493|2017->494
+                  LINES: 28->1|33->2|33->2|33->2|34->3|35->4|35->4|36->5|36->5|36->5|36->5|37->6|37->6|37->6|38->7|39->8|39->8|39->8|40->9|40->9|40->9|41->10|45->14|46->15
                   -- GENERATED --
               */
           

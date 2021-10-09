@@ -23,12 +23,12 @@ public class TaskListViewModel extends Model{
 	public Date deadLine;
 	public String status;
     public Date lastUpdate;
-	public List<TaskListDTO> taskList;
+	public List<TaskListViewModel> taskList;
     public String encodedResult;
 
    public TaskListViewModel(){
         super();
-		this.taskList = new ArrayList<TaskListDTO>();
+		this.taskList = new ArrayList<TaskListViewModel>();
     }
 	public TaskListViewModel(int accountNo,int taskNo,String taskName,String taskContents,Date deadLine,String status,Date lastUpdate) {
 		super();
@@ -40,11 +40,6 @@ public class TaskListViewModel extends Model{
 		this.status = status;
 		this.lastUpdate = lastUpdate;
 	}
-
-	/*public TaskListViewModel(ResultSet rs) {
-		this(rs.getInt("accountNo"),rs.getInt("taskNo"),rs.getString("taskName"),rs.getString("taskContens"),
-		rs.getDate("deadline"),rs.getString("status"),rs.getDate("lastupdate"));
-	}*/
 	
 	public void setAccountNo(int accountNo) {
 		this.accountNo = accountNo;

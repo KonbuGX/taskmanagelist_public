@@ -24,7 +24,6 @@ import java.util.Base64;
 public class HomeController extends Controller {
 	private final Form<TaskListViewModel> personform;
 	private final FormFactory formFactory;
-	private final TaskListRepository taskListRepository;
 	public TaskListViewModel taskListViewModel = new TaskListViewModel();
 	private TaskListService taskListService = new TaskListService();
 	
@@ -36,38 +35,23 @@ public class HomeController extends Controller {
      * <code>GET</code> request with a path of <code>/</code>.
      */
     @Inject
-    public HomeController(FormFactory formFactory,TaskListRepository taskListRepository){
+    public HomeController(FormFactory formFactory){
 		this.formFactory = formFactory;
 		this.personform = formFactory.form(TaskListViewModel.class);
-		this.taskListRepository = taskListRepository;
     }
 
+	//初期表示
     public Result index() {
-    	String msg = "<div class="+"cont_title"+">タスク</div><br>";
+    	String msg = "";
     	Form<TaskListViewModel> formdata = personform.bindFromRequest();
 		TaskListViewModel form = formdata.get();
-		Connection conn = db.getConnection();
-		/*for(TaskListDTO tempList : taskListService.selectAll(conn)){
-			form.taskList.add(tempList);
-		}*/
-		int accountNo = Integer.parseInt(session("accountNo"));
-		
-		//todo:エンコード、デコードはserviceに記載
-		/*String source = "1";
-		Charset charset = StandardCharsets.UTF_8;
-		String encodedResult = Base64.getEncoder().encodeToString(source.getBytes(charset));
-		String encodedResult2 = Base64.getEncoder().encodeToString(encodedResult.getBytes(charset));
-		msg += "<div class="+"cont"+">"+encodedResult2+"</div><br>";
-	  	byte[] decoded = Base64.getDecoder().decode(encodedResult2);
-        String result = new String(decoded, charset);
-		byte[] decoded2 = Base64.getDecoder().decode(result);
-        String result2 = new String(decoded2, charset);
 
-		for(TaskListDTO tempList : taskListService.selectByAccountNo(conn,accountNo)){
-			form.taskList.add(tempList);
-		}*/
+		//リストの取得
+		Connection conn = db.getConnection();
+        int accountNo = Integer.parseInt(session("accountNo"));
 		List<TaskListDTO> tempList = taskListService.selectByAccountNo(conn,accountNo);
-		List<TaskListViewModel> taskList = new ArrayList<TaskListViewModel>();
+
+        taskListViewModel.taskList = new ArrayList<TaskListViewModel>();
 		for(TaskListDTO temp : tempList){
 			TaskListViewModel task = new TaskListViewModel();
 			task.settaskNo(temp.taskNo);
@@ -77,34 +61,33 @@ public class HomeController extends Controller {
 			task.setStatus(temp.status);
 			task.setLastupdate(temp.lastUpdate);
 			task.setEncodedResult(taskListService.EncodedResult(temp.taskNo));
-			taskList.add(task);
+			taskListViewModel.taskList.add(task);
 		}
-        return ok(views.html.index.render(msg,taskList));
-    }
-
-    public Result regi() {
-		//return redirect(routes.HomeController.index());
-        return ok(views.html.regi.render());
+        return ok(views.html.index.render(msg,taskListViewModel.taskList));
     }
     
+	//新規登録ボタン押下時
     public Result add(){
         String msg = "<div class="+"cont"+">タスクを登録して下さい</div><br>";
     	return ok(views.html.add.render(msg,personform));
     }
     
+	//登録ボタン押下時
 	public Result create(){ 
 		int accountNo = Integer.parseInt(session("accountNo"));
 		long miliseconds = System.currentTimeMillis();
 		Date nowDateTime = new java.sql.Date(miliseconds);
 		Form<TaskListViewModel> formdata = personform.bindFromRequest();
 		TaskListViewModel form = formdata.get();
+
+		//登録画面に表示されている項目以外のカラムをセット
 		form.setAccountNo(accountNo);
 		form.setDeadline(nowDateTime);
 		form.setLastupdate(nowDateTime);
-		//エラーチェック
+		
+		//タスクNoの付番
 		Connection conn = db.getConnection();
-		Connection conn2 = db.getConnection();
-		List<TaskListDTO> taskList = taskListService.selectByAccountNo(conn2,accountNo);
+		List<TaskListDTO> taskList = taskListService.selectByAccountNo(conn,accountNo);
 		int taskNo = 0;
 		for(TaskListDTO task : taskList){
 			if(taskNo < task.taskNo){
@@ -112,7 +95,10 @@ public class HomeController extends Controller {
 			}
 		}
 		form.settaskNo(taskNo+1);
-		List<String> errorMsgList = taskListService.Validation(conn,form,app.Enum.screenStatus.CREATE.toString());
+
+		//エラーチェック
+		Connection conn2 = db.getConnection();
+		List<String> errorMsgList = taskListService.Validation(conn2,form,app.Enum.screenStatus.CREATE.toString());
 		if(errorMsgList.size() > 0){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br>";
 			for(String tempMsg : errorMsgList){
@@ -122,6 +108,8 @@ public class HomeController extends Controller {
 			formdata.fill(form);
 			return ok(views.html.add.render(msg,formdata));
 		}
+
+		//インサート処理
 		Connection conn3 = db.getConnection();
 		String errorMsg = taskListService.InsertTask(conn3,form);
 		if(errorMsg != null){
@@ -131,40 +119,46 @@ public class HomeController extends Controller {
 		return redirect(routes.HomeController.index());
 	}
 	
+	//編集ボタン押下時
 	public Result edit(String encodedResult){
 		Form<TaskListViewModel> formdata = personform.bindFromRequest();
 		int accountNo = Integer.parseInt(session("accountNo"));
-		Connection conn = db.getConnection();
+		//エンコードされたパラメータをデコード
 		int taskNo = taskListService.DencodedResult(encodedResult);
+
+		//編集ボタンを押した行のリストを取得し編集画面に表示させる
+		Connection conn = db.getConnection();
 		List<TaskListDTO> form = taskListService.select(conn,accountNo,taskNo);
 		TaskListViewModel temp = new TaskListViewModel();
-		long miliseconds = System.currentTimeMillis();
-		Date nowDateTime = new Date(miliseconds);
 		temp.setAccountNo(accountNo);
 		for(TaskListDTO tempList : form){
-			temp.settaskNo(tempList.taskNo);
 			temp.setTaskName(tempList.taskName);
 			temp.setTaskContents(tempList.taskContents);
 			temp.setDeadline(tempList.deadLine);
 			temp.setStatus(tempList.status);
-			temp.setLastupdate(nowDateTime);
 			formdata = personform.fill(temp);
 		}
 		String msg = "<div class="+"cont"+">タスクを編集して下さい</div><br>";
 		return ok(views.html.edit.render(msg,formdata,encodedResult));
 	}
 	
+	//更新ボタン押下時
 	public Result update(String encodedResult){
 		int accountNo = Integer.parseInt(session("accountNo"));
 		long miliseconds = System.currentTimeMillis();
 		Date nowDateTime = new java.sql.Date(miliseconds);
 		Form<TaskListViewModel> formdata = formFactory.form(TaskListViewModel.class).bindFromRequest();
 		TaskListViewModel form = formdata.get();
+
+		//エンコードされたパラメータをデコード
 		int taskNo = taskListService.DencodedResult(encodedResult);
+
+		//画面未表示項目のカラムをセット
 		form.setAccountNo(accountNo);
 		form.settaskNo(taskNo);
 		form.setLastupdate(nowDateTime);
 
+		//アップデート処理
 		Connection conn = db.getConnection();
 		String errorMsg = taskListService.UpdateTask(conn,form);
 		if(errorMsg != null){
@@ -174,15 +168,17 @@ public class HomeController extends Controller {
 		return redirect(routes.HomeController.index());
 	}
 	
+	//ホーム画面の削除ボタン押下時
 	public Result delete(String encodedResult){
 		Form<TaskListViewModel> formdata = personform.bindFromRequest();
 		int accountNo = Integer.parseInt(session("accountNo"));
-		Connection conn = db.getConnection();
+		//エンコードされたパラメータをデコード
 		int taskNo = taskListService.DencodedResult(encodedResult);
+
+		//削除するタスクを取得し削除画面に表示させる
+		Connection conn = db.getConnection();
 		List<TaskListDTO> form = taskListService.select(conn,accountNo,taskNo);
 		TaskListViewModel temp = new TaskListViewModel();
-		long miliseconds = System.currentTimeMillis();
-		Date nowDateTime = new Date(miliseconds);
 		temp.setAccountNo(accountNo);
 		for(TaskListDTO tempList : form){
 			temp.settaskNo(tempList.taskNo);
@@ -190,24 +186,83 @@ public class HomeController extends Controller {
 			temp.setTaskContents(tempList.taskContents);
 			temp.setDeadline(tempList.deadLine);
 			temp.setStatus(tempList.status);
-			temp.setLastupdate(nowDateTime);
 			formdata = personform.fill(temp);
 		}
 		String msg = "<div class="+"cont"+">以下のタスクを削除いたしますがよろしいでしょうか。</div><br>";
 		return ok(views.html.delete.render(msg,formdata,taskNo,encodedResult));
 	}
 	
+	//削除ボタン押下時
 	public Result remove(String encodedResult){
 		int accountNo = Integer.parseInt(session("accountNo"));
 		Form<TaskListViewModel> formdata = formFactory.form(TaskListViewModel.class).bindFromRequest();
 		TaskListViewModel form = formdata.get();
-		Connection conn = db.getConnection();
+		//エンコードされたパラメータをデコード
 		int taskNo = taskListService.DencodedResult(encodedResult);
+		
+		//デリート処理
+		Connection conn = db.getConnection();
 		String errorMsg = taskListService.DeleteTask(conn,accountNo,taskNo);
 		if(errorMsg != null){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
 			return ok(views.html.delete.render(msg,formdata,taskNo,encodedResult));
 		}
 		return redirect(routes.HomeController.index());
+	}
+
+	//アカウント削除ボタン押下時
+	public Result accountDelete(){
+		int accountNo = Integer.parseInt(session("accountNo"));
+		AccountService accountService = new AccountService();
+
+		//アカウント削除
+		Connection conn = db.getConnection();
+		String errorMsg = accountService.DeleteAccount(conn,accountNo);
+		if(errorMsg != null){
+			String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
+			Connection conn3 = db.getConnection();
+			List<TaskListDTO> tempList = taskListService.selectByAccountNo(conn3,accountNo);
+		    List<TaskListViewModel> taskList = new ArrayList<TaskListViewModel>();
+		    for(TaskListDTO temp : tempList){
+			    TaskListViewModel task = new TaskListViewModel();
+			    task.settaskNo(temp.taskNo);
+			    task.setTaskName(temp.taskName);
+			    task.setTaskContents(temp.taskContents);
+			    task.setDeadline(temp.deadLine);
+			    task.setStatus(temp.status);
+			    task.setLastupdate(temp.lastUpdate);
+			    task.setEncodedResult(taskListService.EncodedResult(temp.taskNo));
+			    taskList.add(task);
+		    }
+            return ok(views.html.index.render(msg,taskList));
+		}
+		
+		//タスク削除
+        if(taskListViewModel.taskList.size() > 0){
+            Connection conn2 = db.getConnection();
+		    errorMsg = taskListService.DeleteTaskByAccountNo(conn2,accountNo);
+		    if(errorMsg != null){
+			    String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
+			    Connection conn3 = db.getConnection();
+			    List<TaskListDTO> tempList = taskListService.selectByAccountNo(conn3,accountNo);
+		        List<TaskListViewModel> taskList = new ArrayList<TaskListViewModel>();
+		        for(TaskListDTO temp : tempList){
+			        TaskListViewModel task = new TaskListViewModel();
+			        task.settaskNo(temp.taskNo);
+			        task.setTaskName(temp.taskName);
+			        task.setTaskContents(temp.taskContents);
+			        task.setDeadline(temp.deadLine);
+			        task.setStatus(temp.status);
+			        task.setLastupdate(temp.lastUpdate);
+			        task.setEncodedResult(taskListService.EncodedResult(temp.taskNo));
+			        taskList.add(task);
+		        }
+                return ok(views.html.index.render(msg,taskList));
+		    }
+        }
+		
+
+		session().clear();
+		return temporaryRedirect("/");
 	}
 }

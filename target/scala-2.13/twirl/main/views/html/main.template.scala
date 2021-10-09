@@ -41,14 +41,17 @@ Seq[Any](format.raw/*8.1*/("""
     <head>
         """),format.raw/*12.62*/("""
         """),format.raw/*13.9*/("""<title>タスク管理</title>
-        <link rel="stylesheet" media="screen" href=""""),_display_(/*14.54*/routes/*14.60*/.Assets.versioned("stylesheets/main.css")),format.raw/*14.101*/("""">
-        <link rel="shortcut icon" type="image/png" href=""""),_display_(/*15.59*/routes/*15.65*/.Assets.versioned("images/favicon.png")),format.raw/*15.104*/("""">
+        <link rel="stylesheet" media="screen" href=""""),_display_(/*14.54*/routes/*14.60*/.Assets.versioned("lib/bootstrap/css/bootstrap.css")),format.raw/*14.112*/("""">
+        <link rel="stylesheet" media="screen" href=""""),_display_(/*15.54*/routes/*15.60*/.Assets.versioned("stylesheets/main.css")),format.raw/*15.101*/("""">
+        <link rel="shortcut icon" type="image/png" href=""""),_display_(/*16.59*/routes/*16.65*/.Assets.versioned("images/favicon.png")),format.raw/*16.104*/("""">
     </head>
     <body>
-        """),format.raw/*19.32*/("""
-        """),_display_(/*20.10*/content),format.raw/*20.17*/("""
-
-        """),format.raw/*22.9*/("""<script src=""""),_display_(/*22.23*/routes/*22.29*/.Assets.versioned("javascripts/main.js")),format.raw/*22.69*/("""" type="text/javascript"></script>
+        """),format.raw/*20.32*/("""
+        """),_display_(/*21.10*/content),format.raw/*21.17*/("""
+        """),format.raw/*22.9*/("""<script src=""""),_display_(/*22.23*/routes/*22.29*/.Assets.versioned("lib/jquery/jquery.min.js")),format.raw/*22.74*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(/*23.23*/routes/*23.29*/.Assets.versioned("javascripts/main.js")),format.raw/*23.69*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(/*24.23*/routes/*24.29*/.Assets.versioned("lib/popper.js/umd/popper.min.js")),format.raw/*24.81*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(/*25.23*/routes/*25.29*/.Assets.versioned("lib/bootstrap/js/bootstrap.min.js")),format.raw/*25.83*/("""" type="text/javascript"></script>
     </body>
 </html>
 """))
@@ -67,11 +70,11 @@ Seq[Any](format.raw/*8.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: 2021-09-05T21:14:46.702
+                  DATE: 2021-09-26T14:12:21.625
                   SOURCE: /Users/bunsawatsubasa1/taskmanagelist/app/views/main.scala.html
-                  HASH: c094ead2db037ad10284a9b8c32d15a88edded01
-                  MATRIX: 1199->260|1310->278|1337->279|1417->384|1453->393|1554->467|1569->473|1632->514|1720->575|1735->581|1796->620|1858->744|1895->754|1923->761|1960->771|2001->785|2016->791|2077->831
-                  LINES: 33->7|38->8|39->9|42->12|43->13|44->14|44->14|44->14|45->15|45->15|45->15|48->19|49->20|49->20|51->22|51->22|51->22|51->22
+                  HASH: f490fa9e2e88f4b511259a0cad779f3277ea060c
+                  MATRIX: 1199->260|1310->278|1337->279|1417->384|1453->393|1554->467|1569->473|1643->525|1726->581|1741->587|1804->628|1892->689|1907->695|1968->734|2030->858|2067->868|2095->875|2131->884|2172->898|2187->904|2253->949|2337->1006|2352->1012|2413->1052|2497->1109|2512->1115|2585->1167|2669->1224|2684->1230|2759->1284
+                  LINES: 33->7|38->8|39->9|42->12|43->13|44->14|44->14|44->14|45->15|45->15|45->15|46->16|46->16|46->16|49->20|50->21|50->21|51->22|51->22|51->22|51->22|52->23|52->23|52->23|53->24|53->24|53->24|54->25|54->25|54->25
                   -- GENERATED --
               */
           

@@ -36,14 +36,14 @@ Seq[Any](_display_(/*2.2*/main()/*2.8*/ {_display_(Seq[Any](format.raw/*2.10*/("
   	"""),_display_(/*5.5*/helper/*5.11*/.form(action=routes.HomeController.update(encodedResult))/*5.68*/{_display_(Seq[Any](format.raw/*5.69*/("""
   	"""),_display_(/*6.5*/helper/*6.11*/.CSRF.formField),format.raw/*6.26*/("""
   	"""),format.raw/*7.4*/("""<div class="other_item">
-  	"""),_display_(/*8.5*/helper/*8.11*/.inputText(form("taskName"),'_label -> "タスク名")),format.raw/*8.57*/("""
-  	"""),_display_(/*9.5*/helper/*9.11*/.inputDate(form("deadLine"),'_label -> "期日")),format.raw/*9.55*/("""
-	"""),_display_(/*10.3*/helper/*10.9*/.select(form("status"),options = helper.options(("未着手","未着手"),("処理中","処理中"),("完了","完了")),'_label -> "ステータス")),format.raw/*10.117*/("""
-  	"""),_display_(/*11.5*/helper/*11.11*/.textarea(form("taskContents"),'_label -> "タスク内容",'cols ->40,'rows ->10)),format.raw/*11.83*/("""
+  	"""),_display_(/*8.5*/helper/*8.11*/.inputText(form("taskName"),'_label -> "タスク名",'class -> "txt")),format.raw/*8.73*/("""<br>
+  	"""),_display_(/*9.5*/helper/*9.11*/.inputDate(form("deadLine"),'_label -> "期日")),format.raw/*9.55*/("""<br>
+	"""),_display_(/*10.3*/helper/*10.9*/.select(form("status"),options = helper.options(("未着手","未着手"),("処理中","処理中"),("完了","完了")),'_label -> "ステータス")),format.raw/*10.117*/("""<br>
+  	"""),_display_(/*11.5*/helper/*11.11*/.textarea(form("taskContents"),'_label -> "タスク内容",'cols ->20,'rows ->5)),format.raw/*11.82*/("""
   	"""),format.raw/*12.4*/("""</div>
-  	<button class="regi">更新</button>
+  	<button class="button">更新</button>
   	""")))}),format.raw/*14.5*/("""
-  	"""),format.raw/*15.4*/("""<a href="/index" class="delete regi">戻る</a>
+  	"""),format.raw/*15.4*/("""<button class="button" onclick="location.href='/index'">戻る</button>
 """)))}),format.raw/*16.2*/("""
 """))
       }
@@ -61,10 +61,10 @@ Seq[Any](_display_(/*2.2*/main()/*2.8*/ {_display_(Seq[Any](format.raw/*2.10*/("
 
               /*
                   -- GENERATED --
-                  DATE: 2021-09-24T11:24:52.846
+                  DATE: 2021-10-05T19:08:42.318
                   SOURCE: /Users/bunsawatsubasa1/taskmanagelist/app/views/edit.scala.html
-                  HASH: 6877533db8192421b89bd8882e7258b98c90d85f
-                  MATRIX: 978->1|1138->69|1151->75|1190->77|1219->80|1265->101|1298->114|1332->123|1346->129|1411->186|1449->187|1479->192|1493->198|1528->213|1558->217|1612->246|1626->252|1692->298|1722->303|1736->309|1800->353|1829->356|1843->362|1973->470|2004->475|2019->481|2112->553|2143->557|2220->604|2251->608|2326->653
+                  HASH: 63e9d08b6620121dd19d0b3097fa0dcd0841916d
+                  MATRIX: 978->1|1138->69|1151->75|1190->77|1219->80|1265->101|1298->114|1332->123|1346->129|1411->186|1449->187|1479->192|1493->198|1528->213|1558->217|1612->246|1626->252|1708->314|1742->323|1756->329|1820->373|1853->380|1867->386|1997->494|2032->503|2047->509|2139->580|2170->584|2249->633|2280->637|2379->706
                   LINES: 28->1|33->2|33->2|33->2|34->3|35->4|35->4|36->5|36->5|36->5|36->5|37->6|37->6|37->6|38->7|39->8|39->8|39->8|40->9|40->9|40->9|41->10|41->10|41->10|42->11|42->11|42->11|43->12|45->14|46->15|47->16
                   -- GENERATED --
               */

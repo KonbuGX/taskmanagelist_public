@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/bunsawatsubasa1/taskmanagelist/conf/routes
-// @DATE:Thu Sep 23 18:39:15 JST 2021
+// @DATE:Thu Oct 07 20:32:10 JST 2021
 
 package router
 
@@ -16,7 +16,7 @@ class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:6
   MangaRecordController_2: controllers.MangaRecordController,
-  // @LINE:14
+  // @LINE:13
   HomeController_1: controllers.HomeController,
   // @LINE:29
   Assets_0: controllers.Assets,
@@ -27,7 +27,7 @@ class Routes(
    def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:6
     MangaRecordController_2: controllers.MangaRecordController,
-    // @LINE:14
+    // @LINE:13
     HomeController_1: controllers.HomeController,
     // @LINE:29
     Assets_0: controllers.Assets
@@ -51,9 +51,9 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """signin""", """controllers.MangaRecordController.signin()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """signout""", """controllers.MangaRecordController.mangaRecord"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """signout""", """controllers.MangaRecordController.signout()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """accountDelete""", """controllers.HomeController.accountDelete()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """index""", """controllers.HomeController.index"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """index""", """controllers.HomeController.index"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """regi""", """controllers.HomeController.regi"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """add""", """controllers.HomeController.add()"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """create""", """controllers.HomeController.create()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """edit/""" + "$" + """EncodedResult<[^/]+>""", """controllers.HomeController.edit(EncodedResult:String)"""),
@@ -194,26 +194,26 @@ class Routes(
     )
   )
 
-  // @LINE:14
-  private[this] lazy val controllers_HomeController_index7_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("index")))
+  // @LINE:13
+  private[this] lazy val controllers_HomeController_accountDelete7_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("accountDelete")))
   )
-  private[this] lazy val controllers_HomeController_index7_invoker = createInvoker(
-    HomeController_1.index,
+  private[this] lazy val controllers_HomeController_accountDelete7_invoker = createInvoker(
+    HomeController_1.accountDelete(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
-      "index",
+      "accountDelete",
       Nil,
       "GET",
-      this.prefix + """index""",
+      this.prefix + """accountDelete""",
       """""",
       Seq()
     )
   )
 
   // @LINE:15
-  private[this] lazy val controllers_HomeController_index8_route = Route("POST",
+  private[this] lazy val controllers_HomeController_index8_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("index")))
   )
   private[this] lazy val controllers_HomeController_index8_invoker = createInvoker(
@@ -223,7 +223,7 @@ class Routes(
       "controllers.HomeController",
       "index",
       Nil,
-      "POST",
+      "GET",
       this.prefix + """index""",
       """""",
       Seq()
@@ -231,18 +231,18 @@ class Routes(
   )
 
   // @LINE:16
-  private[this] lazy val controllers_HomeController_regi9_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("regi")))
+  private[this] lazy val controllers_HomeController_index9_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("index")))
   )
-  private[this] lazy val controllers_HomeController_regi9_invoker = createInvoker(
-    HomeController_1.regi,
+  private[this] lazy val controllers_HomeController_index9_invoker = createInvoker(
+    HomeController_1.index,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
-      "regi",
+      "index",
       Nil,
-      "GET",
-      this.prefix + """regi""",
+      "POST",
+      this.prefix + """index""",
       """""",
       Seq()
     )
@@ -419,10 +419,10 @@ class Routes(
         controllers_MangaRecordController_signout6_invoker.call(MangaRecordController_2.signout())
       }
   
-    // @LINE:14
-    case controllers_HomeController_index7_route(params@_) =>
+    // @LINE:13
+    case controllers_HomeController_accountDelete7_route(params@_) =>
       call { 
-        controllers_HomeController_index7_invoker.call(HomeController_1.index)
+        controllers_HomeController_accountDelete7_invoker.call(HomeController_1.accountDelete())
       }
   
     // @LINE:15
@@ -432,9 +432,9 @@ class Routes(
       }
   
     // @LINE:16
-    case controllers_HomeController_regi9_route(params@_) =>
+    case controllers_HomeController_index9_route(params@_) =>
       call { 
-        controllers_HomeController_regi9_invoker.call(HomeController_1.regi)
+        controllers_HomeController_index9_invoker.call(HomeController_1.index)
       }
   
     // @LINE:18

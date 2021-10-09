@@ -1,3 +1,31 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/bunsawatsubasa1/taskmanagelist/app/controllers/HomeController.java:71:1:  エラー: ';'がありません[0m
-[0m[[0m[31merror[0m] [0m[0m		String errorMsg = taskListService.InsertTask(conn,form)[0m
-[0m[[0m[31merror[0m] [0m[0m		                                                       ^エラー1個[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/bunsawatsubasa1/taskmanagelist/app/views/login.scala.html:8:43: symbol literal is deprecated; use Symbol("_label") instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m    @helper.inputText(form("accountName"),'_label -> "アカウント名")[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                          ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/bunsawatsubasa1/taskmanagelist/app/views/login.scala.html:9:44: symbol literal is deprecated; use Symbol("_label") instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m    @helper.inputPassword(form("password"),'_label -> "パスワード")[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                           ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/bunsawatsubasa1/taskmanagelist/app/views/signup.scala.html:8:43: symbol literal is deprecated; use Symbol("_label") instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m    @helper.inputText(form("accountName"),'_label -> "アカウント名")[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                          ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/bunsawatsubasa1/taskmanagelist/app/views/signup.scala.html:9:44: symbol literal is deprecated; use Symbol("_label") instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m    @helper.inputPassword(form("password"),'_label -> "パスワード")[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                           ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/bunsawatsubasa1/taskmanagelist/app/views/login.scala.html:6:14: method requestHeader in object PlayMagicForJava is deprecated (since 2.7.0): See https://www.playframework.com/documentation/latest/JavaHttpContextMigration27[0m
+[0m[[0m[33mwarn[0m] [0m[0m@helper.CSRF.formField[0m
+[0m[[0m[33mwarn[0m] [0m[0m             ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/bunsawatsubasa1/taskmanagelist/app/views/login.scala.html:8:22: method implicitJavaMessages in object PlayMagicForJava is deprecated (since 2.7.0): See https://www.playframework.com/documentation/latest/JavaHttpContextMigration27[0m
+[0m[[0m[33mwarn[0m] [0m[0m    @helper.inputText(form("accountName"),'_label -> "アカウント名")[0m
+[0m[[0m[33mwarn[0m] [0m[0m                     ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/bunsawatsubasa1/taskmanagelist/app/views/login.scala.html:9:26: method implicitJavaMessages in object PlayMagicForJava is deprecated (since 2.7.0): See https://www.playframework.com/documentation/latest/JavaHttpContextMigration27[0m
+[0m[[0m[33mwarn[0m] [0m[0m    @helper.inputPassword(form("password"),'_label -> "パスワード")[0m
+[0m[[0m[33mwarn[0m] [0m[0m                         ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/bunsawatsubasa1/taskmanagelist/app/views/signup.scala.html:6:14: method requestHeader in object PlayMagicForJava is deprecated (since 2.7.0): See https://www.playframework.com/documentation/latest/JavaHttpContextMigration27[0m
+[0m[[0m[33mwarn[0m] [0m[0m@helper.CSRF.formField[0m
+[0m[[0m[33mwarn[0m] [0m[0m             ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/bunsawatsubasa1/taskmanagelist/app/views/signup.scala.html:8:22: method implicitJavaMessages in object PlayMagicForJava is deprecated (since 2.7.0): See https://www.playframework.com/documentation/latest/JavaHttpContextMigration27[0m
+[0m[[0m[33mwarn[0m] [0m[0m    @helper.inputText(form("accountName"),'_label -> "アカウント名")[0m
+[0m[[0m[33mwarn[0m] [0m[0m                     ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/bunsawatsubasa1/taskmanagelist/app/views/signup.scala.html:9:26: method implicitJavaMessages in object PlayMagicForJava is deprecated (since 2.7.0): See https://www.playframework.com/documentation/latest/JavaHttpContextMigration27[0m
+[0m[[0m[33mwarn[0m] [0m[0m    @helper.inputPassword(form("password"),'_label -> "パスワード")[0m
+[0m[[0m[33mwarn[0m] [0m[0m                         ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m10 warnings found[0m
