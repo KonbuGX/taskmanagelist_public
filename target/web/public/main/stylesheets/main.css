@@ -22,7 +22,7 @@ p{text-align:left;margin:20px 0px 10px 10%}
 }
 
 .button {
-    width:10em;
+    width:20%;
     font-size:24px;
     font-weight:bold;
     display:block;
@@ -99,31 +99,7 @@ p{text-align:left;margin:20px 0px 10px 10%}
     margin:0 auto;
 }
 
-@media screen and (max-width: 1300px){
-    #taskNo_field,#taskName_field,#deadLine_field,#status_field,#taskContents_field {
-        display: table;
-        text-align: left;
-        margin-left: 35%;
-      }
-}
-
-@media screen and (max-width: 1000px){
-    #taskNo_field,#taskName_field,#deadLine_field,#status_field,#taskContents_field {
-        display: table;
-        text-align: left;
-        margin-left: 30%;
-      }
-}
-
-@media screen and (max-width: 700px) {
-    #taskNo_field,#taskName_field,#deadLine_field,#status_field,#taskContents_field {
-        display: table;
-        text-align: left;
-        margin-left: 20%;
-      }
-  }
-
-  #dialog {
+#dialog {
     display:none;
 }
 #dialogBackground {
@@ -178,4 +154,174 @@ p{text-align:left;margin:20px 0px 10px 10%}
 .dialogOkButton {
     color: white;
     background-color:red;
+}
+
+@media screen and (max-width: 1300px){
+    #taskNo_field,#taskName_field,#deadLine_field,#status_field,#taskContents_field {
+        display: table;
+        text-align: left;
+        margin-left: 35%;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    #taskNo_field,#taskName_field,#deadLine_field,#status_field,#taskContents_field {
+        display: table;
+        text-align: left;
+        margin-left: 30%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #taskNo_field,#taskName_field,#deadLine_field,#status_field,#taskContents_field {
+        display: table;
+        text-align: left;
+        margin-left: 20%;
+    }
+}
+
+/*スマホサイズ　縦*/
+@media only screen and (max-device-width:414px) and (orientation: portrait){
+    h1{
+        text-align:center;
+        margin:40px 20px 10px;
+        font-size:5rem;
+    }
+    
+    .button {
+        width:800px;
+        font-size:5rem;
+        font-weight:bold;
+        display:block;
+        text-decoration:none;
+        border: none;
+        text-align:center;
+        padding:4px 0 4px;
+        color:#000000;
+        background-color:white;
+        border-radius:5px;
+        margin:20px auto 30px;
+    }
+    .title_button {
+        margin-top:100%;
+    }
+
+    label{
+        font-size:3rem;
+    }
+    input[type="text"]#accountName{
+        font-size:3rem;
+    }
+    input[type="text"]#password{
+        font-size:3rem;
+    }
+    input[type="password"]#password{
+        font-size:3rem;
+    }
+    input[type="checkbox"]{
+        width: 32px;
+        height: 32px;
+    }
+
+    .table_size{
+        width: 90%;
+        height: 300px; 
+        margin: auto;
+        padding: auto;
+        font-size: 28px;
+    }
+
+    .tablebutton {
+        font-size:21px;
+        text-align:center;
+    }
+
+    #taskNo_field,#taskName_field,#deadLine_field,#status_field,#taskContents_field {
+        display: table;
+        text-align: left;
+        margin-left: 20%;
+    }
+
+    input[type="text"]#taskName{
+        font-size:2rem;
+    }
+    input[type="date"]#deadLine{
+        font-size:2rem;
+    }
+    select#status{
+        font-size:2rem;
+    }
+
+    textarea#taskContents{
+        width: 160%;
+    }
+
+    .cont {
+        width:70%;
+        font-size:2.5rem;
+        font-weight:bold;
+        display:block;
+        text-decoration:none;
+        text-align:center;
+        padding:8px 0px 10px;
+        margin:40px auto 4px;
+    }
+    #dialogContent{
+        position: absolute;
+        top: 20%;
+        width: 90%;
+        height: 400px;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: auto;
+        background-color: white;
+        text-align: center;
+        border:none;
+        font-weight:bold;
+        border-radius:5px;
+    }
+    #dialogMsg {
+        font-size:2.5rem;
+    }
+    
+    .dialogButton {
+        font-size:2.5rem;
+    }
+}
+
+/*スマホサイズ　横*/
+@media only screen and (max-device-width:926px) and (orientation: landscape){
+    .button {
+        width:500px;
+        font-size:2rem;
+        font-weight:bold;
+        display:block;
+        text-decoration:none;
+        border: none;
+        text-align:center;
+        padding:4px 0 4px;
+        color:#000000;
+        background-color:white;
+        border-radius:5px;
+        margin:20px auto 30px;
+    }
+
+    .title_button {
+        margin-top:10%;
+    }
+
+    input[type="checkbox"]{
+        width: 20px;
+        height: 20px;
+    }
+
+    #dialogBackground {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width:950px;
+        height: 100vh;
+        background-color: #000000;
+        opacity: 0.5;
+    }
 }
