@@ -1,0 +1,29 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                                     controllers.MangaRecordController.mangaRecord
+GET     /login                                controllers.MangaRecordController.login()
+GET     /signup                               controllers.MangaRecordController.signup()
+POST    /accountCreate                        controllers.MangaRecordController.accountCreate()
+POST    /signin                               controllers.MangaRecordController.signin()
+GET     /signout                              controllers.MangaRecordController.mangaRecord
+POST    /signout                              controllers.MangaRecordController.signout()
+GET     /accountDelete                        controllers.HomeController.accountDelete()
+
+GET     /index                                controllers.HomeController.index
+POST    /index                                controllers.HomeController.index
+
+GET     /add                                  controllers.HomeController.add()
+POST    /create                               controllers.HomeController.create()
+
+GET     /edit/:EncodedResult                  controllers.HomeController.edit(EncodedResult:String)
+POST    /update/:EncodedResult                controllers.HomeController.update(EncodedResult:String)
+
+GET     /delete/:EncodedResult                controllers.HomeController.delete(EncodedResult:String)
+POST    /remove/:EncodedResult                controllers.HomeController.remove(EncodedResult:String)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
