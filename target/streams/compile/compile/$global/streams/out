@@ -1,4 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/bunsawatsubasa1/taskmanagelist/app/views/main.scala.html:8:18: no arguments allowed for nullary method apply: ()(content: play.twirl.api.Html)play.twirl.api.HtmlFormat.Appendable in object main[0m
-[0m[[0m[31merror[0m] [0m[0m@this(webJarsUtil: org.webjars.play.WebJarsUtil)[0m
-[0m[[0m[31merror[0m] [0m[0m                 ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m

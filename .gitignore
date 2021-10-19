@@ -1,5 +1,15 @@
 
 logs
+build.sbt
+Procfile
+test
+target
+project
+lib
+.g8
+conf/application.conf
+conf/logback.xml
+conf/META-INF
 /.bsp
 /.idea
 /.idea_modules
