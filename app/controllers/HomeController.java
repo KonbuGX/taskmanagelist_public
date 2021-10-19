@@ -52,7 +52,7 @@ public class HomeController extends Controller {
 			task.setDeadline(temp.deadLine);
 			task.setStatus(temp.status);
 			task.setLastupdate(temp.lastUpdate);
-			task.setEncodedResult(taskListService.EncodedResult(temp.taskNo));
+			task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
 			taskListViewModel.taskList.add(task);
 		}
         return ok(views.html.index.render(msg,taskListViewModel.taskList));
@@ -90,7 +90,7 @@ public class HomeController extends Controller {
 
 		//エラーチェック
 		Connection conn2 = db.getConnection();
-		List<String> errorMsgList = taskListService.Validation(conn2,form,app.Enum.screenStatus.CREATE.toString());
+		List<String> errorMsgList = taskListService.validation(conn2,form,app.Enum.screenStatus.CREATE.toString());
 		if(errorMsgList.size() > 0){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br>";
 			for(String tempMsg : errorMsgList){
@@ -103,7 +103,7 @@ public class HomeController extends Controller {
 
 		//インサート処理
 		Connection conn3 = db.getConnection();
-		String errorMsg = taskListService.InsertTask(conn3,form);
+		String errorMsg = taskListService.insertTask(conn3,form);
 		if(errorMsg != null){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
 			return ok(views.html.add.render(msg,formdata));
@@ -116,7 +116,7 @@ public class HomeController extends Controller {
 		Form<TaskListViewModel> formdata = personform.bindFromRequest();
 		int accountNo = Integer.parseInt(session("accountNo"));
 		//エンコードされたパラメータをデコード
-		int taskNo = taskListService.DencodedResult(encodedResult);
+		int taskNo = taskListService.dencodedResult(encodedResult);
 
 		//編集ボタンを押した行のリストを取得し編集画面に表示させる
 		Connection conn = db.getConnection();
@@ -143,7 +143,7 @@ public class HomeController extends Controller {
 		TaskListViewModel form = formdata.get();
 
 		//エンコードされたパラメータをデコード
-		int taskNo = taskListService.DencodedResult(encodedResult);
+		int taskNo = taskListService.dencodedResult(encodedResult);
 
 		//画面未表示項目のカラムをセット
 		form.setAccountNo(accountNo);
@@ -152,7 +152,7 @@ public class HomeController extends Controller {
 
 		//アップデート処理
 		Connection conn = db.getConnection();
-		String errorMsg = taskListService.UpdateTask(conn,form);
+		String errorMsg = taskListService.updateTask(conn,form);
 		if(errorMsg != null){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
 			return ok(views.html.edit.render(msg,formdata,encodedResult));
@@ -165,7 +165,7 @@ public class HomeController extends Controller {
 		Form<TaskListViewModel> formdata = personform.bindFromRequest();
 		int accountNo = Integer.parseInt(session("accountNo"));
 		//エンコードされたパラメータをデコード
-		int taskNo = taskListService.DencodedResult(encodedResult);
+		int taskNo = taskListService.dencodedResult(encodedResult);
 
 		//削除するタスクを取得し削除画面に表示させる
 		Connection conn = db.getConnection();
@@ -190,11 +190,11 @@ public class HomeController extends Controller {
 		Form<TaskListViewModel> formdata = formFactory.form(TaskListViewModel.class).bindFromRequest();
 		TaskListViewModel form = formdata.get();
 		//エンコードされたパラメータをデコード
-		int taskNo = taskListService.DencodedResult(encodedResult);
+		int taskNo = taskListService.dencodedResult(encodedResult);
 		
 		//デリート処理
 		Connection conn = db.getConnection();
-		String errorMsg = taskListService.DeleteTask(conn,accountNo,taskNo);
+		String errorMsg = taskListService.deleteTask(conn,accountNo,taskNo);
 		if(errorMsg != null){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
 			return ok(views.html.delete.render(msg,formdata,taskNo,encodedResult));
@@ -209,7 +209,7 @@ public class HomeController extends Controller {
 
 		//アカウント削除
 		Connection conn = db.getConnection();
-		String errorMsg = accountService.DeleteAccount(conn,accountNo);
+		String errorMsg = accountService.deleteAccount(conn,accountNo);
 		if(errorMsg != null){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
 			Connection conn3 = db.getConnection();
@@ -223,7 +223,7 @@ public class HomeController extends Controller {
 			    task.setDeadline(temp.deadLine);
 			    task.setStatus(temp.status);
 			    task.setLastupdate(temp.lastUpdate);
-			    task.setEncodedResult(taskListService.EncodedResult(temp.taskNo));
+			    task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
 			    taskList.add(task);
 		    }
             return ok(views.html.index.render(msg,taskList));
@@ -232,7 +232,7 @@ public class HomeController extends Controller {
 		//タスク削除
         if(taskListViewModel.taskList.size() > 0){
             Connection conn2 = db.getConnection();
-		    errorMsg = taskListService.DeleteTaskByAccountNo(conn2,accountNo);
+		    errorMsg = taskListService.deleteTaskByAccountNo(conn2,accountNo);
 		    if(errorMsg != null){
 			    String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
 			    Connection conn3 = db.getConnection();
@@ -246,14 +246,12 @@ public class HomeController extends Controller {
 			        task.setDeadline(temp.deadLine);
 			        task.setStatus(temp.status);
 			        task.setLastupdate(temp.lastUpdate);
-			        task.setEncodedResult(taskListService.EncodedResult(temp.taskNo));
+			        task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
 			        taskList.add(task);
 		        }
                 return ok(views.html.index.render(msg,taskList));
 		    }
         }
-		
-
 		session().clear();
 		return temporaryRedirect("/");
 	}

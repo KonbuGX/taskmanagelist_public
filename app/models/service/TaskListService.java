@@ -22,10 +22,10 @@ import play.mvc.*;
 public class TaskListService {
 
   protected TaskListDAO taskListDAO = new TaskListImplements();
-  private int encodedTimes = 5;
+  private int ENCODEDTIMES = 5;
 
   //エラーチェック
-  public List<String> Validation(Connection conn,TaskListViewModel task,String status) {
+  public List<String> validation(Connection conn,TaskListViewModel task,String status) {
     List<String> errorMsg = new ArrayList<String>();
     //必須チェック処理
     if (task.lastUpdate == null) {
@@ -60,30 +60,30 @@ public class TaskListService {
   }
 
   //インサート処理
-  public String InsertTask(Connection conn, TaskListViewModel task) {
+  public String insertTask(Connection conn, TaskListViewModel task) {
     return taskListDAO.insertTask(conn, task);
   }
 
   //アップデート処理
-  public String UpdateTask(Connection conn, TaskListViewModel task) {
+  public String updateTask(Connection conn, TaskListViewModel task) {
     return taskListDAO.updateTask(conn, task);
   }
 
   //accountNo,taskNoで指定しての削除
-  public String DeleteTask(Connection conn, int accountNo, int taskNo) {
+  public String deleteTask(Connection conn, int accountNo, int taskNo) {
     return taskListDAO.deleteTask(conn, accountNo, taskNo);
   }
 
   //accountNoで指定しての削除
-  public String DeleteTaskByAccountNo(Connection conn, int accountNo) {
+  public String deleteTaskByAccountNo(Connection conn, int accountNo) {
     return taskListDAO.deleteTaskByAccountNo(conn, accountNo);
   }
 
   //エンコード処理
-  public String EncodedResult(int taskNo) {
+  public String encodedResult(int taskNo) {
     Charset charset = StandardCharsets.UTF_8;
     String encodedResult = String.valueOf(taskNo);
-    for (int i = 0; i < encodedTimes; i++) {
+    for (int i = 0; i < ENCODEDTIMES; i++) {
       encodedResult =
         Base64.getEncoder().encodeToString(encodedResult.getBytes(charset));
     }
@@ -91,11 +91,11 @@ public class TaskListService {
   }
 
   //デコード処理
-  public int DencodedResult(String encodedString) {
+  public int dencodedResult(String encodedString) {
     Charset charset = StandardCharsets.UTF_8;
 
     String result = encodedString;
-    for (int i = 0; i < encodedTimes; i++) {
+    for (int i = 0; i < ENCODEDTIMES; i++) {
       byte[] decoded = Base64.getDecoder().decode(result);
       result = new String(decoded, charset);
     }

@@ -77,7 +77,7 @@ public class TaskManageController extends Controller {
 
         //エラーチェック
         Connection conn2 = db.getConnection();
-        List<String> errorMsgList = accountService.Validation(conn2,form,app.Enum.screenStatus.SIGNIN.toString());
+        List<String> errorMsgList = accountService.validation(conn2,form,app.Enum.screenStatus.SIGNIN.toString());
 		if(errorMsgList.size() > 0){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br>";
 			for(String tempMsg : errorMsgList){
@@ -95,7 +95,7 @@ public class TaskManageController extends Controller {
 
         //インサート処理
         Connection conn3 = db.getConnection();
-        String errorMsg = accountService.InsertAccount(conn3,form);
+        String errorMsg = accountService.insertAccount(conn3,form);
 		if(errorMsg != null){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
             form.accountNo = 0;
@@ -117,7 +117,7 @@ public class TaskManageController extends Controller {
         String status = app.Enum.screenStatus.LOGIN.toString();
 
         //エラーチェック
-		List<String> errorMsgList = accountService.Validation(conn,form,status);
+		List<String> errorMsgList = accountService.validation(conn,form,status);
 		if(errorMsgList.size() > 0){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br>";
 			for(String tempMsg : errorMsgList){

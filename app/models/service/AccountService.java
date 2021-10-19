@@ -22,7 +22,7 @@ public class AccountService {
   protected AccountDAO accountDAO = new AccountImplements();
 
   //エラーチェック
-  public List<String> Validation(Connection conn,AccountViewModel account,String status) {
+  public List<String> validation(Connection conn,AccountViewModel account,String status) {
     List<String> errorMsg = new ArrayList<String>();
 
     //必須チェック処理
@@ -82,17 +82,17 @@ public class AccountService {
   }
 
   //インサート処理
-  public String InsertAccount(Connection conn, AccountViewModel account) {
+  public String insertAccount(Connection conn, AccountViewModel account) {
     return accountDAO.insertAccount(conn, account);
   }
 
   //アップデート処理
-  public String UpdateAccount(Connection conn, AccountViewModel account) {
+  public String updateAccount(Connection conn, AccountViewModel account) {
     return accountDAO.updateAccount(conn, account);
   }
 
   //デリート処理
-  public String DeleteAccount(Connection conn, int accountNo) {
+  public String deleteAccount(Connection conn, int accountNo) {
     return accountDAO.deleteAccount(conn, accountNo);
   }
 }
