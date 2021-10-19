@@ -21,9 +21,6 @@ public class AccountService {
 
   protected AccountDAO accountDAO = new AccountImplements();
 
-  @Inject
-  Database db;
-
   //エラーチェック
   public List<String> Validation(Connection conn,AccountViewModel account,String status) {
     List<String> errorMsg = new ArrayList<String>();

@@ -17,10 +17,7 @@ import java.time.LocalDateTime;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-/**
- * This controller contains an action to handle HTTP requests
- * to the application's home page.
- */
+
 public class HomeController extends Controller {
 	private final Form<TaskListViewModel> personform;
 	private final FormFactory formFactory;
@@ -28,12 +25,7 @@ public class HomeController extends Controller {
 	private TaskListService taskListService = new TaskListService();
 	
 	@Inject Database db;
-    /**
-     * An action that renders an HTML page with a welcome message.
-     * The configuration in the <code>routes</code> file means that
-     * this method will be called when the application receives a
-     * <code>GET</code> request with a path of <code>/</code>.
-     */
+
     @Inject
     public HomeController(FormFactory formFactory){
 		this.formFactory = formFactory;

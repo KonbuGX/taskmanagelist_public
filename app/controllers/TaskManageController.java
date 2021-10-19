@@ -14,32 +14,24 @@ import play.libs.concurrent.HttpExecutionContext;
 import java.util.concurrent.CompletionStage;
 import java.sql.Date;
 import java.time.LocalDateTime;
-/**
- * This controller contains an action to handle HTTP requests
- * to the application's home page.
- */
-public class MangaRecordController extends Controller {
+
+public class TaskManageController extends Controller {
 	private final Form<AccountViewModel> accountform;
 	private final FormFactory formFactory;
 	public AccountViewModel accountViewModel = new AccountViewModel();
 	private AccountService accountService = new AccountService();
 	
 	@Inject Database db;
-    /**
-     * An action that renders an HTML page with a welcome message.
-     * The configuration in the <code>routes</code> file means that
-     * this method will be called when the application receives a
-     * <code>GET</code> request with a path of <code>/</code>.
-     */
+
     @Inject
-    public MangaRecordController(FormFactory formFactory){
+    public TaskManageController(FormFactory formFactory){
 		this.formFactory = formFactory;
 		this.accountform = formFactory.form(AccountViewModel.class);
     }
 
     //初期表示
-    public Result mangaRecord() {
-        return ok(views.html.mangaRecord.render());
+    public Result taskManage() {
+        return ok(views.html.taskManage.render());
     }
 
     //ログインボタン押下時
@@ -149,7 +141,7 @@ public class MangaRecordController extends Controller {
     //サインアウト処理
     public Result signout() {
 		session().clear();
-        return ok(views.html.mangaRecord.render());
+        return ok(views.html.taskManage.render());
     }
 
 }

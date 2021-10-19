@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 import java.text.SimpleDateFormat;
 
 public class AccountImplements implements AccountDAO {
-    @Inject Database db;
 	
 	//リストを全取得
     public List<AccountDTO> selectAll(Connection conn){

@@ -24,17 +24,10 @@ public class TaskListService {
   protected TaskListDAO taskListDAO = new TaskListImplements();
   private int encodedTimes = 5;
 
-  //protected enum screenStatus{CREATE,EDIT,DELETE
-  @Inject
-  Database db;
-
   //エラーチェック
   public List<String> Validation(Connection conn,TaskListViewModel task,String status) {
     List<String> errorMsg = new ArrayList<String>();
     //必須チェック処理
-    /*if(task.taskNo.length() < 1){
-        errorMsg.add("タスクNoを入力してください");
-    }*/
     if (task.lastUpdate == null) {
       errorMsg.add("期日を入力してください。");
     }

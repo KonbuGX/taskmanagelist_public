@@ -3,13 +3,13 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                                     controllers.MangaRecordController.mangaRecord
-GET     /login                                controllers.MangaRecordController.login()
-GET     /signup                               controllers.MangaRecordController.signup()
-POST    /accountCreate                        controllers.MangaRecordController.accountCreate()
-POST    /signin                               controllers.MangaRecordController.signin()
-GET     /signout                              controllers.MangaRecordController.mangaRecord
-POST    /signout                              controllers.MangaRecordController.signout()
+GET     /                                     controllers.TaskManageController.taskManage
+GET     /login                                controllers.TaskManageController.login()
+GET     /signup                               controllers.TaskManageController.signup()
+POST    /accountCreate                        controllers.TaskManageController.accountCreate()
+POST    /signin                               controllers.TaskManageController.signin()
+GET     /signout                              controllers.TaskManageController.taskManage
+POST    /signout                              controllers.TaskManageController.signout()
 GET     /accountDelete                        controllers.HomeController.accountDelete()
 
 GET     /index                                controllers.HomeController.index

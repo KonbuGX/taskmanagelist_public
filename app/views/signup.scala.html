@@ -2,7 +2,7 @@
 @main() {
 <h1>タスク管理</h1>
 <p>@Html(message)</p>
-@helper.form(action=routes.MangaRecordController.accountCreate()){
+@helper.form(action=routes.TaskManageController.accountCreate()){
 @helper.CSRF.formField
 <div class="login_item">
     @helper.inputText(form("accountName"),'_label -> "アカウント名")

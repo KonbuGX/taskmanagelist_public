@@ -10,13 +10,9 @@ import io.ebean.Finder;
 import io.ebean.*;
 import play.db.ebean.*;
 
-@Entity
-@Table(name = "TaskList")
 public class TaskListViewModel extends Model{
-    
-	@Column(name = "accountNo")
-    public Integer accountNo;
 
+    public Integer accountNo;
 	public Integer taskNo;
     public String taskName;
 	public String taskContents;

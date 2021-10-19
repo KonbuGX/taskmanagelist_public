@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 import java.text.SimpleDateFormat;
 
 public class TaskListImplements implements TaskListDAO {
-    @Inject Database db;
 
 	//リストを全取得
     public List<TaskListDTO> selectAll(Connection conn){
@@ -214,7 +213,6 @@ public class TaskListImplements implements TaskListDAO {
 	//accountNo,taskNoで指定しての削除
 	public String deleteTask(Connection conn,int accountNo,int taskNo){
 		try{
-			//Connection conn = db.getConnection();
 			PreparedStatement ps = conn.prepareStatement(
 				"delete from TaskList where accountNo=? and taskNo=?");
             ps.setInt(1,accountNo);	
