@@ -5,10 +5,10 @@ import play.db.*;
 import models.*;
 
 public class AccountViewModel{
-    public Integer accountNo;
-	public String accountName;
-	public String password;
-	public Date lastUpdate;
+    private Integer accountNo;
+	private String accountName;
+	private String password;
+	private Date lastUpdate;
 
     public AccountViewModel(){
         super();

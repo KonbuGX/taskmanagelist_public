@@ -28,12 +28,12 @@ public class TaskListService {
   public List<String> validation(Connection conn,TaskListViewModel task,String status) {
     List<String> errorMsg = new ArrayList<String>();
     //必須チェック処理
-    if (task.lastUpdate == null) {
+    if (task.getLastupdate() == null) {
       errorMsg.add("期日を入力してください。");
     }
 
     //タスクNo重複チェック
-    List<TaskListDTO> tempList = select(conn, task.accountNo, task.taskNo);
+    List<TaskListDTO> tempList = select(conn, task.getAccountNo(), task.getTaskNo());
     if (
       status == app.Enum.screenStatus.CREATE.toString() && tempList.size() > 0
     ) {

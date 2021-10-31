@@ -26,17 +26,17 @@ public class AccountService {
     List<String> errorMsg = new ArrayList<String>();
 
     //必須チェック処理
-    if (account.accountName.length() < 1) {
+    if (account.getAccountName().length() < 1) {
       errorMsg.add("アカウント名を入力してください");
     }
-    if (account.password.length() < 1) {
+    if (account.getPassword().length() < 1) {
       errorMsg.add("パスワードを入力してください");
     }
     if (errorMsg.size() > 0) {
       return errorMsg;
     }
 
-    List<AccountDTO> tempList = selectByName(conn, account.accountName);
+    List<AccountDTO> tempList = selectByName(conn, account.getAccountName());
     //サインインのみのチェック処理
     if (status == app.Enum.screenStatus.SIGNIN.toString()) {
       //アカウント名重複チェック
@@ -45,7 +45,7 @@ public class AccountService {
       }
 
       //パスワードチェック処理
-      if (account.password.length() < 8) {
+      if (account.getPassword().length() < 8) {
         errorMsg.add("パスワードは8文字以上でお願いいたします。");
       }
     }
@@ -63,7 +63,7 @@ public class AccountService {
       for (AccountDTO temp : tempList) {
         password = temp.password.toString();
       }
-      Boolean passwordCheck = BCrypt.checkpw(account.password, password);
+      Boolean passwordCheck = BCrypt.checkpw(account.getPassword(), password);
       if (!passwordCheck) {
         errorMsg.add("パスワードが間違っています。");
       }

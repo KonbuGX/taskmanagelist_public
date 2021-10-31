@@ -65,15 +65,15 @@ public class TaskManageController extends Controller {
                     tempNo = temp.accountNo;
                 }
             }
-            form.accountNo = tempNo+1;
+            form.setAccountNo(tempNo+1);
         }else{
-            form.accountNo = 1;
+            form.setAccountNo(1);
         }
 
         //日付の取得
         long miliseconds = System.currentTimeMillis();
 		Date nowDateTime = new Date(miliseconds);
-        form.lastUpdate = nowDateTime;
+        form.setLastupdate(nowDateTime);
 
         //エラーチェック
         Connection conn2 = db.getConnection();
@@ -83,29 +83,29 @@ public class TaskManageController extends Controller {
 			for(String tempMsg : errorMsgList){
 				msg += "<div class="+"cont"+">"+tempMsg+"</div><br>";
 			}
-			form.accountNo = 0;
-            form.password = "";
+			form.setAccountNo(0);
+            form.setPassword("");
             formdata = accountform.fill(form);
 			return ok(views.html.signup.render(msg,formdata));
 		}
 
         //パスワードのハッシュ化
-        String password = form.password;
-        form.password = BCrypt.hashpw(password, BCrypt.gensalt());
+        String password = form.getPassword();
+        form.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
 
         //インサート処理
         Connection conn3 = db.getConnection();
         String errorMsg = accountService.insertAccount(conn3,form);
 		if(errorMsg != null){
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
-            form.accountNo = 0;
-            form.accountName = "";
-            form.password = "";
+            form.setAccountNo(0);
+            form.setAccountName("");
+            form.setPassword("");
             formdata = accountform.fill(form);
 			return ok(views.html.signup.render(msg,formdata));
 		}
 
-        session("accountNo",Integer.valueOf(form.accountNo).toString());
+        session("accountNo",Integer.valueOf(form.getAccountNo()).toString());
         return temporaryRedirect("/index");
     }
 
@@ -123,13 +123,13 @@ public class TaskManageController extends Controller {
 			for(String tempMsg : errorMsgList){
 				msg += "<div class="+"cont"+">"+tempMsg+"</div><br>";
 			}
-            form.password = "";
+            form.setPassword("");
 			return ok(views.html.login.render(msg,formdata));
 		}
 
         //セッション追加
         Connection conn2 = db.getConnection();
-        List<AccountDTO> tempList = accountService.selectByName(conn2,form.accountName);
+        List<AccountDTO> tempList = accountService.selectByName(conn2,form.getAccountName());
         int accountNo = 0;
         for(AccountDTO temp : tempList){
             accountNo = temp.accountNo;

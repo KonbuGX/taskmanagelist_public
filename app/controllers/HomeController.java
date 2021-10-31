@@ -46,7 +46,7 @@ public class HomeController extends Controller {
         taskListViewModel.taskList = new ArrayList<TaskListViewModel>();
 		for(TaskListDTO temp : tempList){
 			TaskListViewModel task = new TaskListViewModel();
-			task.settaskNo(temp.taskNo);
+			task.setTaskNo(temp.taskNo);
 			task.setTaskName(temp.taskName);
 			task.setTaskContents(temp.taskContents);
 			task.setDeadline(temp.deadLine);
@@ -86,7 +86,7 @@ public class HomeController extends Controller {
 				taskNo = task.taskNo;
 			}
 		}
-		form.settaskNo(taskNo+1);
+		form.setTaskNo(taskNo+1);
 
 		//エラーチェック
 		Connection conn2 = db.getConnection();
@@ -96,7 +96,7 @@ public class HomeController extends Controller {
 			for(String tempMsg : errorMsgList){
 				msg += "<div class="+"cont"+">"+tempMsg+"</div><br>";
 			}
-			form.lastUpdate = nowDateTime;
+			form.setLastupdate(nowDateTime);
 			formdata.fill(form);
 			return ok(views.html.add.render(msg,formdata));
 		}
@@ -147,7 +147,7 @@ public class HomeController extends Controller {
 
 		//画面未表示項目のカラムをセット
 		form.setAccountNo(accountNo);
-		form.settaskNo(taskNo);
+		form.setTaskNo(taskNo);
 		form.setLastupdate(nowDateTime);
 
 		//アップデート処理
@@ -173,7 +173,7 @@ public class HomeController extends Controller {
 		TaskListViewModel temp = new TaskListViewModel();
 		temp.setAccountNo(accountNo);
 		for(TaskListDTO tempList : form){
-			temp.settaskNo(tempList.taskNo);
+			temp.setTaskNo(tempList.taskNo);
 			temp.setTaskName(tempList.taskName);
 			temp.setTaskContents(tempList.taskContents);
 			temp.setDeadline(tempList.deadLine);
@@ -217,7 +217,7 @@ public class HomeController extends Controller {
 		    List<TaskListViewModel> taskList = new ArrayList<TaskListViewModel>();
 		    for(TaskListDTO temp : tempList){
 			    TaskListViewModel task = new TaskListViewModel();
-			    task.settaskNo(temp.taskNo);
+			    task.setTaskNo(temp.taskNo);
 			    task.setTaskName(temp.taskName);
 			    task.setTaskContents(temp.taskContents);
 			    task.setDeadline(temp.deadLine);
@@ -240,7 +240,7 @@ public class HomeController extends Controller {
 		        List<TaskListViewModel> taskList = new ArrayList<TaskListViewModel>();
 		        for(TaskListDTO temp : tempList){
 			        TaskListViewModel task = new TaskListViewModel();
-			        task.settaskNo(temp.taskNo);
+			        task.setTaskNo(temp.taskNo);
 			        task.setTaskName(temp.taskName);
 			        task.setTaskContents(temp.taskContents);
 			        task.setDeadline(temp.deadLine);

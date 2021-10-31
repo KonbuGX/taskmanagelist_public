@@ -43,7 +43,7 @@ public class TaskListViewModel extends Model{
 	
 	public int getAccountNo() {return accountNo;}
 	
-	public void settaskNo(int taskNo) {
+	public void setTaskNo(int taskNo) {
 		this.taskNo = taskNo;
 	}
 	

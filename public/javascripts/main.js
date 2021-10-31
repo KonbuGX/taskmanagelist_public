@@ -1,4 +1,5 @@
 $(function () {
+    /*パスワード表示・非表示処理*/
     var password = '#password';
     var checkPassword = '#displayPassword';
 
@@ -9,8 +10,34 @@ $(function () {
             $(password).attr('type', 'password');
         }
     });
+
+    /*PCとその他デバイスでのボタン押下時のデザイン処理*/
+    var user = navigator.userAgent;
+    var dialogOkButton = '.dialogOkButton';
+    if(user.indexOf("iPhone") > 0 || user.indexOf("iPad") > 0 || user.indexOf("Android") > 0){
+        $('button').bind("touchstart", function () {
+			$(this).addClass("hover");
+            dialogOkButton.addClass("hover");
+		}).bind("touchend", function () {
+			$(this).removeClass("hover");
+            dialogOkButton.removeClass("hover");
+		});
+    }else{
+        $('button').hover(
+			function () {
+				$(this).addClass("hover");
+                dialogOkButton.addClass("hover");
+			},
+			function () {
+				$(this).removeClass("hover");
+                dialogOkButton.removeClass("hover");
+			}
+		);
+    }
+
 });
 
+/*ダイアログ表示・非表示処理*/
 function dialogHide() {
     var dialog = document.getElementById("dialog");
     dialog.style.display = "none";
