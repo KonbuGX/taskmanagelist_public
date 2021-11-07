@@ -48,3 +48,16 @@ function dialogShow() {
     dialog.style.display = "block";
     return;
 }
+
+/*未完了・完了タスク表示切り替え*/
+function switchShowList() {
+    var show = $('.show');
+    var hide = $('.hide');
+    
+    show.addClass("hide");
+    show.removeClass("show");
+    hide.addClass("show");
+    hide.removeClass("hide");
+
+    return;
+}

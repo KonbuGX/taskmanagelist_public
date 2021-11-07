@@ -20,11 +20,13 @@ public class TaskListViewModel extends Model{
 	public String status;
     public Date lastUpdate;
 	public List<TaskListViewModel> taskList;
+    public List<TaskListViewModel> incompleteTaskList;
     public String encodedResult;
 
    public TaskListViewModel(){
         super();
 		this.taskList = new ArrayList<TaskListViewModel>();
+        this.incompleteTaskList = new ArrayList<TaskListViewModel>();
     }
 	public TaskListViewModel(int accountNo,int taskNo,String taskName,String taskContents,Date deadLine,String status,Date lastUpdate) {
 		super();
