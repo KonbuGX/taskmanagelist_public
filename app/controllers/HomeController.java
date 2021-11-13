@@ -52,7 +52,8 @@ public class HomeController extends Controller {
 			    task.setTaskName(temp.taskName);
 			    task.setTaskContents(temp.taskContents);
 			    task.setDeadline(temp.deadLine);
-			    task.setStatus(temp.status);
+                task.setStatus(temp.status);
+			    task.setPriority(temp.priority);
 			    task.setLastupdate(temp.lastUpdate);
 			    task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
 			    taskListViewModel.taskList.add(task);
@@ -62,6 +63,7 @@ public class HomeController extends Controller {
 			    task.setTaskContents(temp.taskContents);
 			    task.setDeadline(temp.deadLine);
 			    task.setStatus(temp.status);
+                task.setPriority(temp.priority);
 			    task.setLastupdate(temp.lastUpdate);
 			    task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
 			    taskListViewModel.incompleteTaskList.add(task);
@@ -141,6 +143,7 @@ public class HomeController extends Controller {
 			temp.setTaskContents(tempList.taskContents);
 			temp.setDeadline(tempList.deadLine);
 			temp.setStatus(tempList.status);
+            temp.setPriority(tempList.priority);
 			formdata = personform.fill(temp);
 		}
 		String msg = "<div class="+"cont"+">タスクを編集して下さい</div><br>";
@@ -191,6 +194,7 @@ public class HomeController extends Controller {
 			temp.setTaskContents(tempList.taskContents);
 			temp.setDeadline(tempList.deadLine);
 			temp.setStatus(tempList.status);
+            temp.setPriority(tempList.priority);
 			formdata = personform.fill(temp);
 		}
 		String msg = "<div class="+"cont"+">以下のタスクを削除いたしますがよろしいでしょうか。</div><br>";
@@ -237,6 +241,7 @@ public class HomeController extends Controller {
 			        task.setTaskContents(temp.taskContents);
 			        task.setDeadline(temp.deadLine);
 			        task.setStatus(temp.status);
+                    task.setPriority(temp.priority);
 			        task.setLastupdate(temp.lastUpdate);
 			        task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
 			        taskListViewModel.taskList.add(task);
@@ -246,6 +251,7 @@ public class HomeController extends Controller {
 			        task.setTaskContents(temp.taskContents);
 			        task.setDeadline(temp.deadLine);
 			        task.setStatus(temp.status);
+                    task.setPriority(temp.priority);
 			        task.setLastupdate(temp.lastUpdate);
 			        task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
 			        taskListViewModel.incompleteTaskList.add(task);
@@ -255,7 +261,7 @@ public class HomeController extends Controller {
 		}
 		
 		//タスク削除
-        if(taskListViewModel.taskList.size() > 0){
+        if(taskListViewModel.taskList.size() > 0 || taskListViewModel.incompleteTaskList.size() > 0){
             Connection conn2 = db.getConnection();
 		    errorMsg = taskListService.deleteTaskByAccountNo(conn2,accountNo);
 		    if(errorMsg != null){
@@ -272,6 +278,7 @@ public class HomeController extends Controller {
 			            task.setTaskContents(temp.taskContents);
 			            task.setDeadline(temp.deadLine);
 			            task.setStatus(temp.status);
+                        task.setPriority(temp.priority);
 			            task.setLastupdate(temp.lastUpdate);
 			            task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
 			            taskListViewModel.taskList.add(task);
@@ -281,6 +288,7 @@ public class HomeController extends Controller {
 			            task.setTaskContents(temp.taskContents);
 			            task.setDeadline(temp.deadLine);
 			            task.setStatus(temp.status);
+                        task.setPriority(temp.priority);
 			            task.setLastupdate(temp.lastUpdate);
 			            task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
 			            taskListViewModel.incompleteTaskList.add(task);

@@ -9,7 +9,7 @@
             <tr>
                 <th>タスクNo</th>
                 <th>タスク名</th>
-                <th>タスク内容</th>
+                <th>優先度</th>
                 <th>期日</th>
                 <th>ステータス</th>
                 <th>更新</th>
@@ -32,7 +32,7 @@
                     <tr class="show">
                     <td>@item.taskNo</td>
                     <td>@item.taskName</td>
-                    <td>@item.taskContents</td>
+                    <td>@item.priority</td>
                     <td>@item.deadLine</td>
                     <td>@item.status</td>
                     <td><button onclick="location.href='/edit/@item.encodedResult'" class="tablebutton"
@@ -57,7 +57,7 @@
                     <tr class="hide">
                     <td>@item.taskNo</td>
                     <td>@item.taskName</td>
-                    <td>@item.taskContents</td>
+                    <td>@item.priority</td>
                     <td>@item.deadLine</td>
                     <td>@item.status</td>
                     <td><button onclick="location.href='/edit/@item.encodedResult'" class="tablebutton"

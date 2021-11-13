@@ -34,6 +34,7 @@ public class TaskListImplements implements TaskListDAO {
 				temp.taskContents = rs.getString("taskContents");
 				temp.deadLine = rs.getDate("deadLine");
 				temp.status = rs.getString("status");
+                temp.priority = rs.getString("priority");
 				temp.lastUpdate = rs.getDate("lastUpdate");
 				list.add(temp);
     		}
@@ -53,6 +54,7 @@ public class TaskListImplements implements TaskListDAO {
 			temp.taskContents = msg;
 			temp.deadLine = nowDateTime;
 			temp.status = "";
+            temp.priority = "";
 			temp.lastUpdate = nowDateTime;
 			tempList.add(temp);
             return tempList;
@@ -76,6 +78,7 @@ public class TaskListImplements implements TaskListDAO {
 				temp.taskContents = rs.getString("taskContents");
 				temp.deadLine = rs.getDate("deadLine");
 				temp.status = rs.getString("status");
+                temp.priority = rs.getString("priority");
 				temp.lastUpdate = rs.getDate("lastUpdate");
 				list.add(temp);
     		}
@@ -95,6 +98,7 @@ public class TaskListImplements implements TaskListDAO {
 			temp.taskContents = msg;
 			temp.deadLine = nowDateTime;
 			temp.status = "";
+            temp.priority = "";
 			temp.lastUpdate = nowDateTime;
 			tempList.add(temp);
             return tempList;
@@ -120,6 +124,7 @@ public class TaskListImplements implements TaskListDAO {
 				temp.taskContents = rs.getString("taskContents");
 				temp.deadLine = rs.getDate("deadLine");
 				temp.status = rs.getString("status");
+                temp.priority = rs.getString("priority");
 				temp.lastUpdate = rs.getDate("lastUpdate");
 				list.add(temp);
     		}
@@ -139,6 +144,7 @@ public class TaskListImplements implements TaskListDAO {
 			temp.taskContents = msg;
 			temp.deadLine = nowDateTime;
 			temp.status = "";
+            temp.priority = "";
 			temp.lastUpdate = nowDateTime;
 			tempList.add(temp);
             return tempList;
@@ -149,10 +155,11 @@ public class TaskListImplements implements TaskListDAO {
 	//インサート処理
 	public String insertTask(Connection conn,TaskListViewModel task){
          int accountNo = task.getAccountNo();
-         int taskNo= task.getTaskNo();
-         String taskName= task.getTaskName();
-	     String taskContents= task.getTaskContents();
-         String status= task.getStatus();
+         int taskNo = task.getTaskNo();
+         String taskName = task.getTaskName();
+	     String taskContents = task.getTaskContents();
+         String status = task.getStatus();
+         String priority = task.getPriority();
          
 		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
          String formattedDate = simpleDateFormat.format(task.getDeadline());
@@ -160,14 +167,15 @@ public class TaskListImplements implements TaskListDAO {
          java.sql.Date date1 = java.sql.Date.valueOf(formattedDate);
          java.sql.Date date2 = java.sql.Date.valueOf(formattedDate2);
 		try{
-			PreparedStatement ps = conn.prepareStatement("insert into TaskList(accountNo,taskNo,taskName,taskContents,deadLine,status,lastUpdate) values(?,?,?,?,?,?,?)");
+			PreparedStatement ps = conn.prepareStatement("insert into TaskList(accountNo,taskNo,taskName,taskContents,deadLine,status,priority,lastUpdate) values(?,?,?,?,?,?,?,?)");
 			ps.setInt(1,accountNo);	
 			ps.setInt(2,taskNo);
 			ps.setString(3,taskName);	
 			ps.setString(4,taskContents);
 			ps.setDate(5,date1);
             ps.setString(6,status);
-			ps.setDate(7,date2);
+            ps.setString(7,priority);
+			ps.setDate(8,date2);
 			ps.executeUpdate();
 
             ps.close();
@@ -181,10 +189,11 @@ public class TaskListImplements implements TaskListDAO {
 	//アップデート処理
     public String updateTask(Connection conn,TaskListViewModel task){
          int accountNo = task.getAccountNo();
-         int taskNo= task.getTaskNo();
-         String taskName= task.getTaskName();
-	     String taskContents= task.getTaskContents();
-         String status= task.getStatus();
+         int taskNo = task.getTaskNo();
+         String taskName = task.getTaskName();
+	     String taskContents = task.getTaskContents();
+         String status = task.getStatus();
+         String priority = task.getPriority();
          SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
          String formattedDate = simpleDateFormat.format(task.getDeadline());
@@ -192,14 +201,15 @@ public class TaskListImplements implements TaskListDAO {
          java.sql.Date date1 = java.sql.Date.valueOf(formattedDate);
          java.sql.Date date2 = java.sql.Date.valueOf(formattedDate2);
 		 try{
-			PreparedStatement ps = conn.prepareStatement( "update TaskList set taskName=?,taskContents=?,deadLine=?,status=?,lastUpdate=? where accountNo=? and taskNo=?");
+			PreparedStatement ps = conn.prepareStatement( "update TaskList set taskName=?,taskContents=?,deadLine=?,status=?,priority=?,lastUpdate=? where accountNo=? and taskNo=?");
 			ps.setString(1,taskName);	
 			ps.setString(2,taskContents);
 			ps.setDate(3,date1);
             ps.setString(4,status);
-			ps.setDate(5,date2);
-            ps.setInt(6,accountNo);	
-			ps.setInt(7,taskNo);
+            ps.setString(5,priority);
+			ps.setDate(6,date2);
+            ps.setInt(7,accountNo);	
+			ps.setInt(8,taskNo);
 			ps.executeUpdate();
 
             ps.close();

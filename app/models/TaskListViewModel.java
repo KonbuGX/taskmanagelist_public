@@ -18,6 +18,7 @@ public class TaskListViewModel extends Model{
 	public String taskContents;
 	public Date deadLine;
 	public String status;
+    public String priority;
     public Date lastUpdate;
 	public List<TaskListViewModel> taskList;
     public List<TaskListViewModel> incompleteTaskList;
@@ -28,7 +29,7 @@ public class TaskListViewModel extends Model{
 		this.taskList = new ArrayList<TaskListViewModel>();
         this.incompleteTaskList = new ArrayList<TaskListViewModel>();
     }
-	public TaskListViewModel(int accountNo,int taskNo,String taskName,String taskContents,Date deadLine,String status,Date lastUpdate) {
+	public TaskListViewModel(int accountNo,int taskNo,String taskName,String taskContents,Date deadLine,String status,String priority,Date lastUpdate) {
 		super();
 		this.accountNo = accountNo;
 		this.taskNo = taskNo;
@@ -36,6 +37,7 @@ public class TaskListViewModel extends Model{
 		this.taskContents = taskContents;
 		this.deadLine = deadLine;
 		this.status = status;
+        this.priority = priority;
 		this.lastUpdate = lastUpdate;
 	}
 	
@@ -76,6 +78,12 @@ public class TaskListViewModel extends Model{
 	}
 	
 	public String getStatus() {return status;}
+
+    public void setPriority(String priority) {
+		this.priority = priority;
+	}
+	
+	public String getPriority() {return priority;}
 
     public void setLastupdate(Date lastUpdate) {
 		this.lastUpdate = lastUpdate;
