@@ -35,6 +35,29 @@ $(function () {
 		);
     }
 
+    //期日によるタスク行の背景色変更
+    let taskTable = document.getElementById("taskTable");
+    var tempDate = new Date();
+    var today = Date.parse(tempDate.getFullYear()+"-"+(tempDate.getMonth()+1)+"-"+tempDate.getDate());
+    for(let row of taskTable.rows){
+        //ヘッダーは処理の対象外
+        if(taskTable.rows[0] == row){
+            continue;
+        }
+
+        var status = row.cells[4].innerText;
+        var deadline = Date.parse(row.cells[3].innerText);
+        if(status != "完了" && deadline < today){
+            for(let cell of row.cells){
+                cell.style.backgroundColor = "rgb(255, 130, 130)";
+            }
+        }else if(status == "完了"){
+            for(let cell of row.cells){
+                cell.style.backgroundColor = "rgb(204, 204, 204)";
+            }
+        }
+    }
+
 });
 
 /*ダイアログ表示・非表示処理*/
