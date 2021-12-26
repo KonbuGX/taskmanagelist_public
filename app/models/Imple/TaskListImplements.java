@@ -21,7 +21,6 @@ public class TaskListImplements implements TaskListDAO {
 	//リストを全取得
     public List<TaskListDTO> selectAll(Connection conn){
 		List<TaskListDTO> list = new ArrayList<TaskListDTO>();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try{
     		Statement stmt = conn.createStatement();
     		ResultSet rs = stmt.executeQuery("SELECT * from TaskList");
@@ -65,7 +64,6 @@ public class TaskListImplements implements TaskListDAO {
 	//accountNoで指定しての取得
     public List<TaskListDTO> selectByAccountNo(Connection conn,int accountNo){
 		List<TaskListDTO> list = new ArrayList<TaskListDTO>();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try{
 			PreparedStatement ps = conn.prepareStatement("SELECT * from TaskList where accountNo=? ORDER BY taskNo ASC;");
             ps.setInt(1, accountNo);
@@ -109,7 +107,6 @@ public class TaskListImplements implements TaskListDAO {
 	//accountNo,taskNoで指定しての取得
 	public List<TaskListDTO> select(Connection conn,int accountNo,int taskNo){
 		List<TaskListDTO> list = new ArrayList<TaskListDTO>();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try{
 			PreparedStatement ps = conn.prepareStatement("SELECT * from TaskList where accountNo=? and taskNo=?");
             ps.setInt(1, accountNo);
@@ -164,18 +161,18 @@ public class TaskListImplements implements TaskListDAO {
 		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
          String formattedDate = simpleDateFormat.format(task.getDeadline());
          String formattedDate2 = simpleDateFormat.format(task.getLastupdate());
-         java.sql.Date date1 = java.sql.Date.valueOf(formattedDate);
-         java.sql.Date date2 = java.sql.Date.valueOf(formattedDate2);
+         java.sql.Date deadLine = java.sql.Date.valueOf(formattedDate);
+         java.sql.Date lastUpdate = java.sql.Date.valueOf(formattedDate2);
 		try{
 			PreparedStatement ps = conn.prepareStatement("insert into TaskList(accountNo,taskNo,taskName,taskContents,deadLine,status,priority,lastUpdate) values(?,?,?,?,?,?,?,?)");
 			ps.setInt(1,accountNo);	
 			ps.setInt(2,taskNo);
 			ps.setString(3,taskName);	
 			ps.setString(4,taskContents);
-			ps.setDate(5,date1);
+			ps.setDate(5,deadLine);
             ps.setString(6,status);
             ps.setString(7,priority);
-			ps.setDate(8,date2);
+			ps.setDate(8,lastUpdate);
 			ps.executeUpdate();
 
             ps.close();
@@ -198,16 +195,16 @@ public class TaskListImplements implements TaskListDAO {
 
          String formattedDate = simpleDateFormat.format(task.getDeadline());
          String formattedDate2 = simpleDateFormat.format(task.getLastupdate());
-         java.sql.Date date1 = java.sql.Date.valueOf(formattedDate);
-         java.sql.Date date2 = java.sql.Date.valueOf(formattedDate2);
+         java.sql.Date deadLine = java.sql.Date.valueOf(formattedDate);
+         java.sql.Date lastUpdate = java.sql.Date.valueOf(formattedDate2);
 		 try{
 			PreparedStatement ps = conn.prepareStatement( "update TaskList set taskName=?,taskContents=?,deadLine=?,status=?,priority=?,lastUpdate=? where accountNo=? and taskNo=?");
 			ps.setString(1,taskName);	
 			ps.setString(2,taskContents);
-			ps.setDate(3,date1);
+			ps.setDate(3,deadLine);
             ps.setString(4,status);
             ps.setString(5,priority);
-			ps.setDate(6,date2);
+			ps.setDate(6,lastUpdate);
             ps.setInt(7,accountNo);	
 			ps.setInt(8,taskNo);
 			ps.executeUpdate();

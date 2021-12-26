@@ -21,7 +21,6 @@ public class AccountImplements implements AccountDAO {
 	//リストを全取得
     public List<AccountDTO> selectAll(Connection conn){
 		List<AccountDTO> list = new ArrayList<AccountDTO>();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try{
     		Statement stmt = conn.createStatement();
     		ResultSet rs = stmt.executeQuery("SELECT * from Account");
@@ -57,7 +56,6 @@ public class AccountImplements implements AccountDAO {
 	//リストをaccountNameで指定しての取得
 	public List<AccountDTO> selectByName(Connection conn,String accountName){
 		List<AccountDTO> list = new ArrayList<AccountDTO>();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try{
 			PreparedStatement ps = conn.prepareStatement("SELECT * from Account where accountName =?");
             ps.setString(1, accountName);

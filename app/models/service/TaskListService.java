@@ -22,24 +22,20 @@ import play.mvc.*;
 public class TaskListService {
 
   protected TaskListDAO taskListDAO = new TaskListImplements();
-  private int ENCODEDTIMES = 5;
+  private final int ENCODEDTIMES = 5;
 
   //エラーチェック
   public List<String> validation(Connection conn,TaskListViewModel task,String status) {
     List<String> errorMsg = new ArrayList<String>();
     //必須チェック処理
     if (task.getLastupdate() == null) {
-      errorMsg.add("期日を入力してください。");
+        errorMsg.add("期日を入力してください。");
     }
 
     //タスクNo重複チェック
     List<TaskListDTO> tempList = select(conn, task.getAccountNo(), task.getTaskNo());
-    if (
-      status == app.Enum.screenStatus.CREATE.toString() && tempList.size() > 0
-    ) {
-      errorMsg.add(
-        "タスクNoが重複しています。更新してからもう一度登録してください"
-      );
+    if (status == app.Enum.screenStatus.CREATE.toString() && tempList.size() > 0) {
+        errorMsg.add("タスクNoが重複しています。更新してからもう一度登録してください");
     }
     return errorMsg;
   }
@@ -84,8 +80,7 @@ public class TaskListService {
     Charset charset = StandardCharsets.UTF_8;
     String encodedResult = String.valueOf(taskNo);
     for (int i = 0; i < ENCODEDTIMES; i++) {
-      encodedResult =
-        Base64.getEncoder().encodeToString(encodedResult.getBytes(charset));
+        encodedResult = Base64.getEncoder().encodeToString(encodedResult.getBytes(charset));
     }
     return encodedResult;
   }
