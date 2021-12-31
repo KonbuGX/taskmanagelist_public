@@ -28,7 +28,7 @@ public class TaskListService {
   public List<String> validation(Connection conn,TaskListViewModel task,String status) {
     List<String> errorMsg = new ArrayList<String>();
     //必須チェック処理
-    if (task.getLastupdate() == null) {
+    if (task.getDeadline() == null) {
         errorMsg.add("期日を入力してください。");
     }
 

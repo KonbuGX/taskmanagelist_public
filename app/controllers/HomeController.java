@@ -63,7 +63,6 @@ public class HomeController extends Controller {
 
 		//登録画面に表示されている項目以外のカラムをセット
 		form.setAccountNo(accountNo);
-		form.setDeadline(nowDateTime);
 		form.setLastupdate(nowDateTime);
 		
 		//タスクNoの付番
