@@ -42,34 +42,8 @@ public class HomeController extends Controller {
 		Connection conn = db.getConnection();
         int accountNo = Integer.parseInt(session("accountNo"));
 		List<TaskListDTO> tempList = taskListService.selectByAccountNo(conn,accountNo);
+		taskListViewModel = taskListService.setTaskList(tempList,taskListViewModel);
 
-        taskListViewModel.taskList = new ArrayList<TaskListViewModel>();
-        taskListViewModel.incompleteTaskList = new ArrayList<TaskListViewModel>();
-		for(TaskListDTO temp : tempList){
-            TaskListViewModel task = new TaskListViewModel();
-            if(temp.status.equals("完了")){
-			    task.setTaskNo(temp.taskNo);
-			    task.setTaskName(temp.taskName);
-			    task.setTaskContents(temp.taskContents);
-			    task.setDeadline(temp.deadLine);
-                task.setStatus(temp.status);
-			    task.setPriority(temp.priority);
-			    task.setLastupdate(temp.lastUpdate);
-			    task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
-			    taskListViewModel.taskList.add(task);
-            }else{
-                task.setTaskNo(temp.taskNo);
-			    task.setTaskName(temp.taskName);
-			    task.setTaskContents(temp.taskContents);
-			    task.setDeadline(temp.deadLine);
-			    task.setStatus(temp.status);
-                task.setPriority(temp.priority);
-			    task.setLastupdate(temp.lastUpdate);
-			    task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
-			    taskListViewModel.incompleteTaskList.add(task);
-            }
-			
-		}
         return ok(views.html.index.render(msg,taskListViewModel.taskList,taskListViewModel.incompleteTaskList));
     }
     
@@ -136,17 +110,9 @@ public class HomeController extends Controller {
 		//編集ボタンを押した行のリストを取得し編集画面に表示させる
 		Connection conn = db.getConnection();
 		List<TaskListDTO> form = taskListService.select(conn,accountNo,taskNo);
-		TaskListViewModel temp = new TaskListViewModel();
-		temp.setAccountNo(accountNo);
-		for(TaskListDTO tempList : form){
-			temp.setTaskName(tempList.taskName);
-			temp.setTaskContents(tempList.taskContents);
-			temp.setDeadline(tempList.deadLine);
-			temp.setStatus(tempList.status);
-            temp.setPriority(tempList.priority);
-			formdata = personform.fill(temp);
-		}
-		String msg = "<div class="+"cont"+">タスクを編集して下さい</div><br>";
+        formdata = taskListService.setItem(formdata,form,accountNo,app.Enum.screenStatus.TASKUPDATE.toString(),personform);
+		
+        String msg = "<div class="+"cont"+">タスクを編集して下さい</div><br>";
 		return ok(views.html.edit.render(msg,formdata,encodedResult));
 	}
 	
@@ -186,18 +152,9 @@ public class HomeController extends Controller {
 		//削除するタスクを取得し削除画面に表示させる
 		Connection conn = db.getConnection();
 		List<TaskListDTO> form = taskListService.select(conn,accountNo,taskNo);
-		TaskListViewModel temp = new TaskListViewModel();
-		temp.setAccountNo(accountNo);
-		for(TaskListDTO tempList : form){
-			temp.setTaskNo(tempList.taskNo);
-			temp.setTaskName(tempList.taskName);
-			temp.setTaskContents(tempList.taskContents);
-			temp.setDeadline(tempList.deadLine);
-			temp.setStatus(tempList.status);
-            temp.setPriority(tempList.priority);
-			formdata = personform.fill(temp);
-		}
-		String msg = "<div class="+"cont"+">以下のタスクを削除いたしますがよろしいでしょうか。</div><br>";
+        formdata = taskListService.setItem(formdata,form,accountNo,app.Enum.screenStatus.TASKDELETE.toString(),personform);
+		
+        String msg = "<div class="+"cont"+">以下のタスクを削除いたしますがよろしいでしょうか。</div><br>";
 		return ok(views.html.delete.render(msg,formdata,taskNo,encodedResult));
 	}
 	
@@ -231,32 +188,8 @@ public class HomeController extends Controller {
 			String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
 			Connection conn3 = db.getConnection();
 			List<TaskListDTO> tempList = taskListService.selectByAccountNo(conn3,accountNo);
-		    taskListViewModel.taskList = new ArrayList<TaskListViewModel>();
-            taskListViewModel.incompleteTaskList = new ArrayList<TaskListViewModel>();
-		    for(TaskListDTO temp : tempList){
-                TaskListViewModel task = new TaskListViewModel();
-			    if(temp.status.equals("完了")){
-			        task.setTaskNo(temp.taskNo);
-			        task.setTaskName(temp.taskName);
-			        task.setTaskContents(temp.taskContents);
-			        task.setDeadline(temp.deadLine);
-			        task.setStatus(temp.status);
-                    task.setPriority(temp.priority);
-			        task.setLastupdate(temp.lastUpdate);
-			        task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
-			        taskListViewModel.taskList.add(task);
-                }else{
-                    task.setTaskNo(temp.taskNo);
-			        task.setTaskName(temp.taskName);
-			        task.setTaskContents(temp.taskContents);
-			        task.setDeadline(temp.deadLine);
-			        task.setStatus(temp.status);
-                    task.setPriority(temp.priority);
-			        task.setLastupdate(temp.lastUpdate);
-			        task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
-			        taskListViewModel.incompleteTaskList.add(task);
-                }
-		     }
+		    taskListViewModel = taskListService.setTaskList(tempList,taskListViewModel);
+
             return ok(views.html.index.render(msg,taskListViewModel.taskList,taskListViewModel.incompleteTaskList));
 		}
 		
@@ -268,32 +201,8 @@ public class HomeController extends Controller {
 			    String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
 			    Connection conn3 = db.getConnection();
 			    List<TaskListDTO> tempList = taskListService.selectByAccountNo(conn3,accountNo);
-		        taskListViewModel.taskList = new ArrayList<TaskListViewModel>();
-                taskListViewModel.incompleteTaskList = new ArrayList<TaskListViewModel>();
-		        for(TaskListDTO temp : tempList){
-                    TaskListViewModel task = new TaskListViewModel();
-			        if(temp.status.equals("完了")){
-			            task.setTaskNo(temp.taskNo);
-			            task.setTaskName(temp.taskName);
-			            task.setTaskContents(temp.taskContents);
-			            task.setDeadline(temp.deadLine);
-			            task.setStatus(temp.status);
-                        task.setPriority(temp.priority);
-			            task.setLastupdate(temp.lastUpdate);
-			            task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
-			            taskListViewModel.taskList.add(task);
-                    }else{
-                        task.setTaskNo(temp.taskNo);
-			            task.setTaskName(temp.taskName);
-			            task.setTaskContents(temp.taskContents);
-			            task.setDeadline(temp.deadLine);
-			            task.setStatus(temp.status);
-                        task.setPriority(temp.priority);
-			            task.setLastupdate(temp.lastUpdate);
-			            task.setEncodedResult(taskListService.encodedResult(temp.taskNo));
-			            taskListViewModel.incompleteTaskList.add(task);
-                    }
-		        }
+		        taskListViewModel = taskListService.setTaskList(tempList,taskListViewModel);
+
                 return ok(views.html.index.render(msg,taskListViewModel.taskList,taskListViewModel.incompleteTaskList));
 		    }
         }

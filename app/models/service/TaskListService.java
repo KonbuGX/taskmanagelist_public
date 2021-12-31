@@ -75,6 +75,55 @@ public class TaskListService {
     return taskListDAO.deleteTaskByAccountNo(conn, accountNo);
   }
 
+  //完了・未完了リストをセットする処理
+  public TaskListViewModel setTaskList(List<TaskListDTO> tempList, TaskListViewModel taskListViewModel){
+        taskListViewModel.taskList = new ArrayList<TaskListViewModel>();
+        taskListViewModel.incompleteTaskList = new ArrayList<TaskListViewModel>();
+		for(TaskListDTO temp : tempList){
+            TaskListViewModel task = new TaskListViewModel();
+            if(temp.status.equals("完了")){
+			    task.setTaskNo(temp.taskNo);
+			    task.setTaskName(temp.taskName);
+			    task.setTaskContents(temp.taskContents);
+			    task.setDeadline(temp.deadLine);
+                task.setStatus(temp.status);
+			    task.setPriority(temp.priority);
+			    task.setLastupdate(temp.lastUpdate);
+			    task.setEncodedResult(encodedResult(temp.taskNo));
+			    taskListViewModel.taskList.add(task);
+            }else{
+                task.setTaskNo(temp.taskNo);
+			    task.setTaskName(temp.taskName);
+			    task.setTaskContents(temp.taskContents);
+			    task.setDeadline(temp.deadLine);
+			    task.setStatus(temp.status);
+                task.setPriority(temp.priority);
+			    task.setLastupdate(temp.lastUpdate);
+			    task.setEncodedResult(encodedResult(temp.taskNo));
+			    taskListViewModel.incompleteTaskList.add(task);
+            }
+        }
+        return taskListViewModel;
+    }  
+
+  //編集・削除ボタン押下時の項目をセットする処理
+  public Form<TaskListViewModel> setItem(Form<TaskListViewModel> formdata, List<TaskListDTO> form, int accountNo, String screenStatus, Form<TaskListViewModel> personform){
+        TaskListViewModel temp = new TaskListViewModel();
+		temp.setAccountNo(accountNo);
+		for(TaskListDTO tempList : form){
+            if(screenStatus.equals("TASKDELETE")){
+                temp.setTaskNo(tempList.taskNo);
+            }
+			temp.setTaskName(tempList.taskName);
+			temp.setTaskContents(tempList.taskContents);
+			temp.setDeadline(tempList.deadLine);
+			temp.setStatus(tempList.status);
+            temp.setPriority(tempList.priority);
+			formdata = personform.fill(temp);
+		}
+        return formdata;
+   }
+
   //エンコード処理
   public String encodedResult(int taskNo) {
     Charset charset = StandardCharsets.UTF_8;

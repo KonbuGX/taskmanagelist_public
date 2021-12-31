@@ -19,5 +19,7 @@ public class Enum{
     //DELETE:タスク削除画面
     //LOGIN:ユーザアカウント作成画面
     //SIGNIN:サインイン画面
-    public enum screenStatus{CREATE,EDIT,DELETE,LOGIN,SIGNIN}
+    //TASKUPDATE:タスクの編集画面
+    //TASKDELETE:タスクの削除画面
+    public enum screenStatus{CREATE,EDIT,DELETE,LOGIN,SIGNIN,TASKUPDATE,TASKDELETE}
 }
