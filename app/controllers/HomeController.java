@@ -44,7 +44,7 @@ public class HomeController extends Controller {
 		List<TaskListDTO> tempList = taskListService.selectByAccountNo(conn,accountNo);
 		taskListViewModel = taskListService.setTaskList(tempList,taskListViewModel);
 
-        return ok(views.html.index.render(msg,taskListViewModel.taskList,taskListViewModel.incompleteTaskList));
+        return ok(views.html.index.render(msg,session("accountName"),taskListViewModel.taskList,taskListViewModel.incompleteTaskList));
     }
     
 	//新規登録ボタン押下時
@@ -189,7 +189,7 @@ public class HomeController extends Controller {
 			List<TaskListDTO> tempList = taskListService.selectByAccountNo(conn3,accountNo);
 		    taskListViewModel = taskListService.setTaskList(tempList,taskListViewModel);
 
-            return ok(views.html.index.render(msg,taskListViewModel.taskList,taskListViewModel.incompleteTaskList));
+            return ok(views.html.index.render(msg,session("accountName"),taskListViewModel.taskList,taskListViewModel.incompleteTaskList));
 		}
 		
 		//タスク削除
@@ -202,7 +202,7 @@ public class HomeController extends Controller {
 			    List<TaskListDTO> tempList = taskListService.selectByAccountNo(conn3,accountNo);
 		        taskListViewModel = taskListService.setTaskList(tempList,taskListViewModel);
 
-                return ok(views.html.index.render(msg,taskListViewModel.taskList,taskListViewModel.incompleteTaskList));
+                return ok(views.html.index.render(msg,session("accountName"),taskListViewModel.taskList,taskListViewModel.incompleteTaskList));
 		    }
         }
 		session().clear();

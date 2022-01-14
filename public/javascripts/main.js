@@ -58,6 +58,16 @@ $(function () {
         }
     }
 
+    //ハンバーガーメニューの表示非表示の処理
+    $('.nav-btn').on("click", function () {
+        if ($('.nav-btn').hasClass('open')) {
+            $('.nav-btn').removeClass('open');
+            $('#navi').removeClass('open-menu');
+        } else {
+            $('.nav-btn').addClass('open');
+            $('#navi').addClass('open-menu');
+        }
+    });
 });
 
 /*ダイアログ表示・非表示処理*/

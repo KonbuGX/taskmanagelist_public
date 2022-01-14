@@ -1,8 +1,20 @@
-@(message:String,taskList:List[TaskListViewModel],incompleteTaskList:List[TaskListViewModel])
+@(message:String,accountName:String,taskList:List[TaskListViewModel],incompleteTaskList:List[TaskListViewModel])
 @main() {
 <h1>タスク管理</h1>
 <div class="title_item">
     <p>@Html(message)</p>
+    <p class="nav-btn">
+		<span></span>
+		<span></span>
+		<span></span>
+	</p>
+    <nav id="navi">
+        <p>アカウント名：@Html(accountName)</p>
+		<ul class="menu">
+			<li><a onclick="location.href='/signout'">サインアウト</a></li>
+			<li><a onclick="dialogShow()">アカウント削除</a></li>
+		</ul>
+	</nav>
     <button id="switchButton" class="button" onclick="switchShowList()">タスク表示切り替え</button>
     <table id="taskTable" class="table table-bordered table_size">
         <thead class="th_back">
@@ -71,8 +83,6 @@
     </table>
 </div>
 <button class="button" onclick="location.href='/add'">登録</button>
-<button class="button" onclick="location.href='/signout'">サインアウト</button>
-<button class="button" onclick="dialogShow()">アカウント削除</button>
 
 <div id="dialog">
     <div id="dialogBackground"></div>

@@ -131,6 +131,7 @@ tr.hide{
     border:none;
     font-weight:bold;
     border-radius:5px;
+    z-index: 3;
 }
 
 #dialogMsg {
@@ -175,11 +176,130 @@ button.hover {
     box-shadow: 0px  0px 2px 0.5px gray;
 }
 
+.nav-btn {
+    position: fixed;
+    top: 5px;
+    right: 20px;
+    width: 40px;
+    height: 24px;
+    z-index: 2;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.nav-btn span {
+    position: absolute;
+    width: 40px;
+    height: 6px;
+    background: rgb(0, 0, 0);
+    border-radius: 10px;
+    transition: all 300ms;
+}
+
+.nav-btn span:nth-child(1) {
+    top: 0
+}
+
+.nav-btn span:nth-child(2) {
+    top: 15px
+}
+
+.nav-btn span:nth-child(3) {
+    top: 30px
+}
+
+.nav-btn.open span {
+    background: rgb(255, 255, 255);
+    transform: rotate(180deg);
+}
+
+.nav-btn.open span:nth-child(1) {
+    transform: translate(-7px,15px) rotate(45deg);
+}
+
+.nav-btn.open span:nth-child(2) {
+    transform: translate(-7px,0px) rotate(135deg);
+}
+
+.nav-btn.open span:nth-child(3) {
+    transform: translate(100px,0px);
+}
+
+#navi {
+    position: fixed;
+    top: 0;
+    right: -500px;
+    width: 500px;
+    height: 100%;
+    padding-top: 50px;
+    box-sizing: border-box;
+    z-index: 1;
+    transition: all 300ms;
+}
+
+#navi.open-menu {
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#navi ul li,p {
+    font-size: 42px;
+    padding: 10px 0px;
+    list-style: none;
+    color: white;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 1300px){
     #taskNo_field,#taskName_field,#deadLine_field,#status_field,#priority_field,#taskContents_field {
         display: table;
         text-align: left;
         margin-left: 35%;
+    }
+
+    .nav-btn {
+        width: 30px;
+        height: 24px;
+    }
+
+    .nav-btn span {
+        width: 30px;
+        height: 4px;
+    }
+
+    .nav-btn span:nth-child(1) {
+        top: 0
+    }
+    
+    .nav-btn span:nth-child(2) {
+        top: 10px
+    }
+    
+    .nav-btn span:nth-child(3) {
+        top: 20px
+    }
+
+    .nav-btn.open span:nth-child(1) {
+        transform: translate(-7px,10px) rotate(45deg);
+    }
+    
+    .nav-btn.open span:nth-child(2) {
+        transform: translate(-7px,0px) rotate(135deg);
+    }
+    
+    .nav-btn.open span:nth-child(3) {
+        transform: translate(100px,0px);
+    }
+
+    #navi {
+        right: -250px;
+        width: 250px;
+        padding-top: 50px;
+    }
+    
+    #navi ul li,p{
+        font-size: 32px;
     }
 }
 
@@ -314,6 +434,50 @@ button.hover {
         background-color: rgb(241, 241, 241);
         box-shadow: 0px  0px 2px 1px gray;
     }
+
+    .nav-btn {
+        width: 120px;
+        height: 24px;
+    }
+
+    .nav-btn span {
+        width: 120px;
+        height: 10px;
+    }
+
+    .nav-btn span:nth-child(1) {
+        top: 0
+    }
+    
+    .nav-btn span:nth-child(2) {
+        top: 30px
+    }
+    
+    .nav-btn span:nth-child(3) {
+        top: 60px
+    }
+
+    .nav-btn.open span:nth-child(1) {
+        transform: translate(-7px,30px) rotate(45deg);
+    }
+    
+    .nav-btn.open span:nth-child(2) {
+        transform: translate(-7px,0px) rotate(135deg);
+    }
+    
+    .nav-btn.open span:nth-child(3) {
+        transform: translate(150px,0px);
+    }
+
+    #navi {
+        right: -500px;
+        width: 500px;
+        padding-top: 100px;
+    }
+    
+    #navi ul li,p{
+        font-size: 4rem;
+    }
 }
 
 /*スマホサイズ　横*/
@@ -350,5 +514,50 @@ button.hover {
         height: 100vh;
         background-color: #000000;
         opacity: 0.5;
+    }
+
+
+    .nav-btn {
+        width: 80px;
+        height: 24px;
+    }
+
+    .nav-btn span {
+        width: 80px;
+        height: 6px;
+    }
+
+    .nav-btn span:nth-child(1) {
+        top: 0
+    }
+    
+    .nav-btn span:nth-child(2) {
+        top: 15px
+    }
+    
+    .nav-btn span:nth-child(3) {
+        top: 30px
+    }
+
+    .nav-btn.open span:nth-child(1) {
+        transform: translate(-7px,30px) rotate(45deg);
+    }
+    
+    .nav-btn.open span:nth-child(2) {
+        transform: translate(-7px,15px) rotate(135deg);
+    }
+    
+    .nav-btn.open span:nth-child(3) {
+        transform: translate(150px,0px);
+    }
+
+    #navi {
+        right: -500px;
+        width: 500px;
+        padding-top: 100px;
+    }
+    
+    #navi ul li,p{
+        font-size: 2rem;
     }
 }

@@ -106,6 +106,7 @@ public class TaskManageController extends Controller {
 		}
 
         session("accountNo",Integer.valueOf(form.getAccountNo()).toString());
+        session("accountName",form.getAccountName());
         return temporaryRedirect("/index");
     }
 
@@ -135,6 +136,7 @@ public class TaskManageController extends Controller {
             accountNo = temp.accountNo;
         }
         session("accountNo",Integer.valueOf(accountNo).toString());
+        session("accountName",form.getAccountName());
         return temporaryRedirect("/index");
     }
 
