@@ -3,7 +3,7 @@
 <h1>タスク管理</h1>
 <div class="title_item">
     <p>@Html(message)</p>
-    <p class="nav-btn">
+    <p class="nav-btn" onclick="hamburgerMenuShow()">
 		<span></span>
 		<span></span>
 		<span></span>
@@ -43,7 +43,7 @@
                 @for(item<-incompleteTaskList){ 
                     <tr class="show">
                     <td>@item.taskNo</td>
-                    <td>@item.taskName</td>
+                    <td><button onclick="location.href='/taskMemo/@item.encodedResult'" class="tablebutton taskTableButtonSize">@item.taskName</button></td>
                     <td>@item.priority</td>
                     <td>@item.deadLine</td>
                     <td>@item.status</td>
@@ -68,7 +68,7 @@
                 @for(item<-taskList){ 
                     <tr class="hide">
                     <td>@item.taskNo</td>
-                    <td>@item.taskName</td>
+                    <td><button onclick="location.href='/taskMemo/@item.encodedResult'" class="tablebutton taskTableButtonSize">@item.taskName</button></td>
                     <td>@item.priority</td>
                     <td>@item.deadLine</td>
                     <td>@item.status</td>

@@ -1,0 +1,103 @@
+@(message:String,accountName:String,taskName:String,taskContents:String,form:Form[TaskMemoViewModel],taskMemoList:List[TaskMemoDTO])
+@main() {
+<h1>タスク管理</h1>
+<div class="title_item">
+    <p>@Html(message)</p>
+    <p class="back-btn" onclick="location.href='/index'">
+		<span></span>
+		<span></span>
+		<span></span>
+	</p>
+    <p class="nav-btn" onclick="hamburgerMenuShow()">
+		<span></span>
+		<span></span>
+		<span></span>
+	</p>
+    <nav id="navi-memo">
+        <p>アカウント名：@Html(accountName)</p>
+		<ul class="menu">
+			<li><a onclick="location.href='/signout'">サインアウト</a></li>
+			<li><a onclick="dialogShow()">アカウント削除</a></li>
+		</ul>
+	</nav>
+    <div class="taskMemoDetail">
+        <p class="taskName">@Html(taskName)</p>
+        <p class="taskContents">@Html(taskContents)</p>
+    </div>
+    <table id="taskTable" class="table table-bordered table_size">
+        <thead class="th_back">
+            <tr>
+                <th colspan="2">タスクメモ</th>
+            </tr>
+        </thead>
+        <tbody class="td_back">
+            @if(taskMemoList.size()<=0){ 
+                <tr>
+                <td class="memoTd">　　</td>
+                <td class="memoTableBtn"></td>
+                </tr>
+            }else{
+                @for(item<-taskMemoList){ 
+                    <tr>
+                     <td class="memoTableTd">@item.memoContents</td>
+                     <td class="memoTableBtn">
+                        <a id="updateMemoNo@item.memoNo" class="memoTableButton" onclick="taskMemoDialogShow('updateMemoNo@item.memoNo','@item.memoNo','編集')">編集</a>
+                        <a id="deleteMemoNo@item.memoNo" class="memoTableButton" onclick="taskMemoDialogShow('deleteMemoNo@item.memoNo','@item.memoNo','削除')">削除</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div id="memoContentsForm">
+    @helper.form(action=routes.TaskMemoController.createTaskMemo()){
+        @helper.CSRF.formField
+        <textarea id="memoContents" name="memoContents"></textarea>
+        <button class="button">登録</button>
+    }
+</div>
+<div id="updateMemoDialog">
+    <div id="updateMemoDialogBackground"></div>
+    <div id="updateMemoDialogContent">
+        <div id="updateMemoDialogMsg">
+            メモを編集できます。
+        </div>
+        <div>
+            @helper.form(action=routes.TaskMemoController.updateTaskMemo()){
+                @helper.CSRF.formField
+                <textarea id="dialogMemoContents" name="dialogMemoContents"></textarea>
+                <input type="hidden" id="memoNo" name="memoNo">
+                <button id="updateMemoBtn" class="dialogButton dialogOkButton">はい</button>
+            }
+            <button class="dialogButton" onclick="taskMemoDialogHide('編集')">いいえ</button>
+        </div>
+    </div>
+</div>
+<div id="deleteMemoDialog">
+    <div id="deleteMemoDialogBackground"></div>
+    <div id="deleteMemoDialogContent">
+        <div id="deleteMemoDialogMsg">
+            下記のメモを削除いたします。
+            削除してもよろしいでしょうか
+        </div>
+        <p id="deleteMemoContentsMsg"></p>
+        <div>
+            <button id="deleteMemoBtn" class="dialogButton dialogOkButton">はい</button>
+            <button class="dialogButton" onclick="taskMemoDialogHide('削除')">いいえ</button>
+        </div>
+    </div>
+</div>
+<div id="dialog">
+    <div id="dialogBackground"></div>
+    <div id="dialogContent">
+        <div id="dialogMsg">
+            アカウントとそれに付随するタスクを削除いたします。<br>
+            削除してもよろしいでしょうか。
+        </div>
+        <div>
+            <button class="dialogButton dialogOkButton" onclick="location.href='/accountDelete'">はい</button>
+            <button class="dialogButton" onclick="dialogHide()">いいえ</button>
+        </div>
+    </div>
+</div>
+}

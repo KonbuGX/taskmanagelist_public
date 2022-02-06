@@ -57,18 +57,20 @@ $(function () {
             }
         }
     }
-
-    //ハンバーガーメニューの表示非表示の処理
-    $('.nav-btn').on("click", function () {
-        if ($('.nav-btn').hasClass('open')) {
-            $('.nav-btn').removeClass('open');
-            $('#navi').removeClass('open-menu');
-        } else {
-            $('.nav-btn').addClass('open');
-            $('#navi').addClass('open-menu');
-        }
-    });
 });
+
+//ハンバーガーメニューの表示非表示の処理
+function hamburgerMenuShow(){
+    if ($('.nav-btn').hasClass('open')) {
+        $('.nav-btn').removeClass('open');
+        $('#navi').removeClass('open-menu');
+        $('#navi-memo').removeClass('open-menu');
+    } else {
+        $('.nav-btn').addClass('open');
+        $('#navi').addClass('open-menu');
+        $('#navi-memo').addClass('open-menu');
+    }
+}
 
 /*ダイアログ表示・非表示処理*/
 function dialogHide() {
@@ -92,5 +94,33 @@ function switchShowList() {
     hide.addClass("show");
     hide.removeClass("hide");
 
+    return;
+}
+
+function taskMemoDialogShow(id,memoNo,status) {
+    let msg = $('a#'+id).parent('.memoTableBtn').prev('td.memoTableTd').text();
+    if(status == "編集"){
+        var dialog = document.getElementById("updateMemoDialog");
+        dialog.style.display = "block";
+        document.getElementById("dialogMemoContents").value = msg;
+        document.getElementById("memoNo").value = Number(memoNo);
+    }else{
+        var dialog = document.getElementById("deleteMemoDialog");
+        dialog.style.display = "block";
+        document.getElementById("deleteMemoContentsMsg").innerText = msg;
+        document.getElementById("deleteMemoBtn").setAttribute('onclick',"location.href='/deleteTaskMemo/"+Number(memoNo)+"'");
+    }
+    return;
+}
+
+function taskMemoDialogHide(status) {
+    if(status == "編集"){
+        var dialog = document.getElementById("updateMemoDialog");
+        dialog.style.display = "none";
+    }else{
+        var dialog = document.getElementById("deleteMemoDialog");
+        dialog.style.display = "none";
+    }
+    
     return;
 }

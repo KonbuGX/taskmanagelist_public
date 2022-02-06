@@ -1,7 +1,6 @@
 *{margin:0;padding:0;}
 body{background-color:rgb(153,255,153);}
 h1{text-align:center;margin:40px 20px 10px}
-/*table{margin:20px 5% 10px;border-color: #000000;}*/
 .table_size{width: 80%;margin: auto;padding: auto;}
 .th_back{background-color:green;text-align: center;}
 .td_back{background-color: white;text-align: center;}
@@ -11,7 +10,7 @@ p{text-align:left;margin:20px 0px 10px 10%}
     font-size:18px;
     font-weight:bold;
     text-decoration:none;
-    border: none;
+    border: 1px solid rgb(146, 146, 146);
     display:block;
     text-align:center;
     padding:4px 0 4px;
@@ -19,6 +18,31 @@ p{text-align:left;margin:20px 0px 10px 10%}
     background-color:white;
     border-radius:5px;
     margin:20px auto 30px;
+}
+
+.taskTableButtonSize{
+    width: 70px;
+}
+
+.memoTableButton {
+    width:100%;
+    font-size:16px;
+    font-weight:bold;
+    text-decoration:none;
+    border: 1px solid rgb(146, 146, 146);
+    display:block;
+    text-align:center;
+    padding:4px 0 4px;
+    color:#000000;
+    background-color:white;
+    border-radius:5px;
+}
+
+.memoTableTd{
+    text-align: left;
+    width: 90%;
+    white-space: pre;
+    padding-left: 40% !important;
 }
 
 .button {
@@ -145,6 +169,60 @@ tr.hide{
     margin:50px auto;
 }
 
+#deleteMemoDialog,#updateMemoDialog {
+    display:none;
+}
+#deleteMemoDialogBackground,#updateMemoDialogBackground {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100vh;
+    background-color: #000000;
+    opacity: 0.5;
+}
+#deleteMemoDialogContent,#updateMemoDialogContent {
+    position: absolute;
+    top: 20%;
+    width: 65%;
+    height: 350px;
+    margin-left: 18%;
+    margin-right: 20%;
+    margin-top: auto;
+    background-color: white;
+    text-align: center;
+    border:none;
+    font-weight:bold;
+    border-radius:5px;
+    z-index: 3;
+}
+
+#deleteMemoDialogMsg{
+    width:80%;
+    font-size:20px;
+    font-weight:bold;
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    padding: auto;
+    margin:30px auto;
+}
+
+#dialogMemoContents {
+    width:80%;
+    font-size:20px;
+    font-weight:bold;
+    display:block;
+    text-decoration:none;
+    text-align:left;
+    padding: auto;
+    margin:30px auto;
+}
+
+#deleteMemoContentsMsg{
+    margin-left: 40%;
+}
+
 .dialogButton {
     width:5em;
     font-size:24px;
@@ -197,6 +275,27 @@ button.hover {
     transition: all 300ms;
 }
 
+.back-btn {
+    position: fixed;
+    top: 5px;
+    right: 20px;
+    left: 10px;
+    width: 40px;
+    height: 24px;
+    z-index: 2;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.back-btn span {
+    position: absolute;
+    width: 40px;
+    height: 6px;
+    background: rgb(0, 0, 0);
+    border-radius: 10px;
+}
+
 .nav-btn span:nth-child(1) {
     top: 0
 }
@@ -226,6 +325,22 @@ button.hover {
     transform: translate(100px,0px);
 }
 
+.back-btn span:nth-child(1) {
+    top: 0;
+    transform: translate(-7px,2px) rotate(135deg);
+}
+
+.back-btn span:nth-child(2) {
+    top: 15px;
+    width: 60px;
+    translate: -3px;
+}
+
+.back-btn span:nth-child(3) {
+    top: 30px;
+    transform: translate(-7px,-2px) rotate(45deg);
+}
+
 #navi {
     position: fixed;
     top: 0;
@@ -243,12 +358,78 @@ button.hover {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-#navi ul li,p {
+#navi ul li,#navi p {
     font-size: 42px;
     padding: 10px 0px;
     list-style: none;
     color: white;
     cursor: pointer;
+}
+
+#navi-memo {
+    position: fixed;
+    top: 0;
+    right: -500px;
+    width: 500px;
+    height: 100%;
+    padding-top: 50px;
+    box-sizing: border-box;
+    z-index: 1;
+    transition: all 300ms;
+}
+
+#navi-memo.open-menu {
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#navi-memo ul li,#navi-memo p {
+    font-size: 42px;
+    padding: 10px 0px;
+    list-style: none;
+    color: white;
+    cursor: pointer;
+}
+
+div.taskMemoDetail{
+    width:80%;
+    border: none;
+    display:block;
+    padding:4px 0 4px;
+    background-color:white;
+    border-radius:5px;
+    margin:5px auto 30px;
+}
+
+p.taskName{
+    text-align: center;
+    font-size:24px;
+    font-weight:bold;
+    text-decoration:none;
+    margin: auto;
+}
+
+p.taskContents{
+    text-align: left;
+    font-size:24px;
+    font-weight:bold;
+    text-decoration:none;
+    margin: 10px auto 10px 40%;
+    white-space:pre-wrap;
+    width: 120px;
+}
+
+div#memoContentsForm {
+    text-align: center;
+    width: 80%;
+    margin: 30px auto 10px;
+}
+
+#memoContents{
+    width: 100%;
+    height: 60px;
+    font-weight:bold;
+    text-decoration:none;
 }
 
 @media screen and (max-width: 1300px){
@@ -298,7 +479,17 @@ button.hover {
         padding-top: 50px;
     }
     
-    #navi ul li,p{
+    #navi ul li,#navi p{
+        font-size: 32px;
+    }
+
+    #navi-memo {
+        right: -250px;
+        width: 250px;
+        padding-top: 50px;
+    }
+    
+    #navi-memo ul li,#navi-memo p{
         font-size: 32px;
     }
 }
@@ -371,7 +562,7 @@ button.hover {
     }
 
     .tablebutton {
-        font-size:21px;
+        font-size:20px;
         text-align:center;
     }
 
@@ -478,6 +669,149 @@ button.hover {
     #navi ul li,p{
         font-size: 4rem;
     }
+
+    #navi-memo {
+        right: -500px;
+        width: 500px;
+        padding-top: 100px;
+    }
+    
+    #navi-memo ul li,p{
+        font-size: 4rem;
+    }
+
+    .back-btn {
+        position: fixed;
+        top: 5px;
+        right: 20px;
+        left: 10px;
+        width: 80px;
+        height: 24px;
+        z-index: 2;
+        box-sizing: border-box;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+    
+    .back-btn span {
+        position: absolute;
+        width: 80px;
+        height: 10px;
+        background: rgb(0, 0, 0);
+        border-radius: 10px;
+    }
+
+    .back-btn span:nth-child(1) {
+        top: 0;
+        transform: translate(-7px,20px) rotate(135deg);
+    }
+    
+    .back-btn span:nth-child(2) {
+        top: 45px;
+        width: 100px;
+        translate: 10px;
+    }
+    
+    .back-btn span:nth-child(3) {
+        top: 45px;
+        transform: translate(-7px,26px) rotate(45deg);
+    }
+
+    p.taskName{
+        text-align: center;
+        font-size:2rem;
+        font-weight:bold;
+        text-decoration:none;
+        margin: auto;
+    }
+    
+    p.taskContents{
+        text-align: left;
+        font-size:2rem;
+        font-weight:bold;
+        text-decoration:none;
+        margin: 10px auto 10px 40%;
+        white-space:pre-wrap;
+        width: 120px;
+    }
+
+    .memoTableTd{
+        font-size: 32px;
+        text-align: left;
+        width: 90%;
+        white-space: pre;
+        padding-right: 10%;
+        padding-left: 40% !important;
+    }
+
+    .memoTableButton {
+        width:90px;
+        font-size:40px;
+        font-weight:bold;
+        text-decoration:none;
+        border: 1px solid rgb(146, 146, 146);
+        display:block;
+        text-align:center;
+        padding:4px 0 4px;
+        color:#000000;
+        background-color:white;
+        border-radius:5px;
+    }
+
+    #deleteMemoDialogContent,#updateMemoDialogContent {
+        position: absolute;
+        top: 20%;
+        width: 90%;
+        height: 50%;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: auto;
+        background-color: white;
+        text-align: center;
+        border:none;
+        font-weight:bold;
+        border-radius:5px;
+        z-index: 3;
+    }
+    
+    #deleteMemoDialogMsg{
+        width:80%;
+        font-size:38px;
+        font-weight:bold;
+        display:block;
+        text-decoration:none;
+        text-align:center;
+        padding: auto;
+        margin:30px auto;
+    }
+    
+    #dialogMemoContents {
+        width:80%;
+        height: 200px;
+        font-size:38px;
+        font-weight:bold;
+        display:block;
+        text-decoration:none;
+        text-align:left;
+        padding: auto;
+        margin:30px auto;
+    }
+
+    #updateMemoDialogMsg{
+        font-size:38px;
+    }
+
+    #memoContents{
+        width: 100%;
+        height: 140px;
+        font-size: 30px;
+    }
+
+    #deleteMemoContentsMsg{
+        font-size:38px;
+        margin-bottom: 5%;
+        margin-left: 40%;
+    }
 }
 
 /*スマホサイズ　横*/
@@ -559,5 +893,88 @@ button.hover {
     
     #navi ul li,p{
         font-size: 2rem;
+    }
+
+    #navi-memo {
+        right: -500px;
+        width: 500px;
+        padding-top: 100px;
+    }
+    
+    #navi-memo ul li,p{
+        font-size: 2rem;
+    }
+
+    .memoTableTd{
+        font-size: 25px;
+        text-align: left;
+        width: 90%;
+        white-space: pre;
+        padding-left: 40% !important;
+    }
+
+    .memoTableButton {
+        width:60px;
+        font-size:22px;
+        font-weight:bold;
+        text-decoration:none;
+        border: 1px solid rgb(146, 146, 146);
+        display:block;
+        text-align:center;
+        padding:4px 0 4px;
+        color:#000000;
+        background-color:white;
+        border-radius:5px;
+    }
+
+    #memoContents{
+        width: 100%;
+        height: 180px;
+        font-size: 20px;
+        font-weight:bold;
+        text-decoration:none;
+    }
+
+    #updateMemoDialogMsg{
+        font-size:25px;
+    }
+
+    #deleteMemoDialogContent,#updateMemoDialogContent {
+        position: absolute;
+        top: 20%;
+        width: 90%;
+        height: 100%;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: auto;
+        background-color: white;
+        text-align: center;
+        border:none;
+        font-weight:bold;
+        border-radius:5px;
+        z-index: 3;
+    }
+    
+    #deleteMemoDialogMsg{
+        width:80%;
+        font-size:25px;
+        font-weight:bold;
+        display:block;
+        text-decoration:none;
+        text-align:center;
+        padding: auto;
+        margin:30px auto;
+    }
+
+    #dialogMemoContents {
+        width:80%;
+        height: 180px;
+        font-size:38px;
+        font-weight:bold;
+        display:block;
+        text-decoration:none;
+        text-align:left;
+        padding: auto;
+        margin:30px auto;
     }
 }

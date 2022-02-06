@@ -205,6 +205,24 @@ public class HomeController extends Controller {
                 return ok(views.html.index.render(msg,session("accountName"),taskListViewModel.taskList,taskListViewModel.incompleteTaskList));
 		    }
         }
+
+        //メモ削除
+        TaskMemoService taskMemoService = new TaskMemoService();
+        Connection conn4 = db.getConnection();
+        List<TaskMemoDTO> taskMemoList = taskMemoService.select(conn4,accountNo);
+        if(taskMemoList.size() > 0){
+            Connection conn5 = db.getConnection();
+		    errorMsg = taskMemoService.deleteTaskMemoByAccountNo(conn5,accountNo);
+		    if(errorMsg != null){
+			    String msg = "<div class="+"cont"+">エラーが発生しました</div><br><div class="+"cont"+">"+errorMsg+"</div><br>";
+			    Connection conn6 = db.getConnection();
+			    List<TaskListDTO> tempList = taskListService.selectByAccountNo(conn6,accountNo);
+		        taskListViewModel = taskListService.setTaskList(tempList,taskListViewModel);
+
+                return ok(views.html.index.render(msg,session("accountName"),taskListViewModel.taskList,taskListViewModel.incompleteTaskList));
+		    }
+        }
+
 		session().clear();
 		return temporaryRedirect("/");
 	}
