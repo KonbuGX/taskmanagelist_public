@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.stream.IntStream;
 
 public class TaskMemoController extends Controller {
 	private final Form<TaskMemoViewModel> taskMemoForm;
@@ -76,13 +77,13 @@ public class TaskMemoController extends Controller {
 		//メモNoの付番
 		Connection conn = db.getConnection();
 		List<TaskMemoDTO> memoList = taskMemoService.selectAll(conn,accountNo,taskNo);
-		int memoNo = 0;
-		for(TaskMemoDTO memo : memoList){
-			if(memoNo < memo.memoNo){
-				memoNo = memo.memoNo;
-			}
-		}
-		form.setMemoNo(memoNo+1);
+        if(memoList.size() > 0){
+            int memoNo = memoList.stream().mapToInt(num -> num.memoNo).max().getAsInt();
+            form.setMemoNo(memoNo+1);
+        }else{
+            int memoNo = 1;
+            form.setMemoNo(memoNo);
+        }
         
 		//エラーチェック
         String status = app.Enum.screenStatus.TASKMEMOINSERT.toString();

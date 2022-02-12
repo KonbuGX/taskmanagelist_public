@@ -14,6 +14,7 @@ import play.libs.concurrent.HttpExecutionContext;
 import java.util.concurrent.CompletionStage;
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.stream.Stream;
 
 public class TaskManageController extends Controller {
 	private final Form<AccountViewModel> accountform;
@@ -58,16 +59,11 @@ public class TaskManageController extends Controller {
 
         //アカウントNoの付番
         if(tempList.size()>0){
-            int tempNo = 0;
-            for(int i = 0;i<tempList.size();i++){
-                AccountDTO temp = tempList.get(i);
-                if(temp.accountNo>tempNo){
-                    tempNo = temp.accountNo;
-                }
-            }
+            int tempNo = tempList.stream().mapToInt(num -> num.accountNo).max().getAsInt();
             form.setAccountNo(tempNo+1);
         }else{
-            form.setAccountNo(1);
+            int accountNo = 1;
+            form.setAccountNo(accountNo);
         }
 
         //日付の取得

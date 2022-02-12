@@ -68,13 +68,13 @@ public class HomeController extends Controller {
 		//タスクNoの付番
 		Connection conn = db.getConnection();
 		List<TaskListDTO> taskList = taskListService.selectByAccountNo(conn,accountNo);
-		int taskNo = 0;
-		for(TaskListDTO task : taskList){
-			if(taskNo < task.taskNo){
-				taskNo = task.taskNo;
-			}
-		}
-		form.setTaskNo(taskNo+1);
+		if(taskList.size() > 0){
+            int taskNo = taskList.stream().mapToInt(num -> num.taskNo).max().getAsInt();
+            form.setTaskNo(taskNo+1);
+        }else{
+            int taskNo = 1;
+            form.setTaskNo(taskNo);
+        }
 
 		//エラーチェック
 		Connection conn2 = db.getConnection();
