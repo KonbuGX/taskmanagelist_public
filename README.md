@@ -5,7 +5,7 @@
 ・タスクのCRUD機能  
 今後、機能を拡張していく予定です。
   
-URL:https://taskmanagelist.herokuapp.com
+URL:停止中
 
 更新内容(2022/2/6 追記)  
 ・タスクごとにメモを作成できる機能を追加いたしました。  
